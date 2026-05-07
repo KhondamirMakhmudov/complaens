@@ -18,7 +18,6 @@ import {
   FileIcon,
   MegaphoneIcon,
   ShieldIcon,
-  VolumeIcon,
 } from "@/components/ui/site-icons";
 
 const geistSans = Geist({
@@ -97,9 +96,12 @@ export default function Home() {
   const [stage, setStage] = useState("loading");
   const [progress, setProgress] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isIntroVisible, setIsIntroVisible] = useState(true);
+  const [isIntroClosing, setIsIntroClosing] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem("hymnPlayed")) {
+      setIsIntroVisible(false);
       queueMicrotask(() => setStage("done"));
       return;
     }
@@ -171,6 +173,21 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    if (stage !== "done" || !isIntroVisible) {
+      return;
+    }
+
+    setIsIntroClosing(true);
+
+    const timeoutId = setTimeout(() => {
+      setIsIntroVisible(false);
+      setIsIntroClosing(false);
+    }, 420);
+
+    return () => clearTimeout(timeoutId);
+  }, [stage, isIntroVisible]);
+
   const handleSkip = () => {
     if (audioRef.current) {
       audioRef.current.pause();
@@ -180,7 +197,6 @@ export default function Home() {
     setStage("done");
   };
 
-  const showIntroOverlay = stage !== "done";
   const currentSlide = infoSlides[activeSlide];
   const CurrentSlideIcon = currentSlide.icon;
   const handlePrevSlide = () => {
@@ -317,49 +333,62 @@ export default function Home() {
         </section>
       </main>
 
-      {showIntroOverlay && (
+      {isIntroVisible && (
         <div className="pointer-events-none fixed left-0 right-0 top-3 z-50 flex justify-center px-3">
-          <div className="pointer-events-auto w-full max-w-160 rounded-2xl border border-white/25 bg-linear-to-b from-emerald-700/95 to-emerald-900/95 p-4 text-center text-white shadow-2xl">
-            <Image
-              src="/icons/uzbekistan-flag.svg"
-              alt="Flag of Uzbekistan"
-              width={210}
-              height={140}
-              priority
-              className="mx-auto mb-3 h-auto"
-            />
-            <h2 className="mb-2 text-[clamp(1.6rem,3vw,2.2rem)] font-bold">
-              O&apos;zbekiston Respublikasi
-            </h2>
-            <p className="mb-3 text-base opacity-90">
-              Davlat madhiyasi ijro etilmoqda
-            </p>
+          <div
+            className={`pointer-events-auto relative w-full max-w-330 overflow-hidden rounded-3xl border bg-white/88 px-4 text-slate-900 shadow-[0_18px_45px_rgba(15,44,89,0.18)] backdrop-blur-xl transition-all duration-400 ease-out ${
+              isIntroClosing
+                ? "max-h-0 -translate-y-3 border-transparent py-0 opacity-0"
+                : "max-h-52 translate-y-0 border-white/70 py-3 opacity-100"
+            }`}
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex min-w-0 flex-1 items-start gap-3">
+                <Image
+                  src="/icons/uzbekistan-flag.svg"
+                  alt="Flag of Uzbekistan"
+                  width={96}
+                  height={64}
+                  priority
+                  className="h-auto shrink-0 rounded-xl border border-slate-200/80 shadow-sm"
+                />
 
-            {stage === "idle" && (
-              <p className="mb-3 flex items-center justify-center gap-2 font-bold">
-                <VolumeIcon className="h-4 w-4" />
-                Ovozni boshlash uchun bir marta bosing
-              </p>
-            )}
+                <div className="min-w-0 flex-1 pt-0.5">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h2 className="text-lg font-extrabold leading-tight tracking-tight text-slate-900 md:text-xl">
+                    O&apos;zbekiston Respublikasi
+                  </h2>
+                  <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-emerald-700">
+                    Davlat madhiyasi
+                  </span>
+                </div>
 
-            <div className="mb-3 h-2 w-full overflow-hidden rounded-full bg-white/25">
+                <p className="mt-0.5 text-sm font-medium text-slate-600">
+                  Davlat madhiyasi ijro etilmoqda
+                </p>
+              </div>
+              </div>
+
+              <div className="shrink-0">
+                <Button
+                  onClick={handleSkip}
+                  className="min-h-10 rounded-xl border border-slate-200 bg-slate-900 px-4 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+                >
+                  O&apos;tkazib yuborish
+                </Button>
+              </div>
+            </div>
+
+            <div className="absolute bottom-0 left-0 h-1.5 w-full bg-slate-200">
               <div
                 style={{
                   width: `${progress}%`,
                   height: "100%",
-                  background:
-                    "linear-gradient(90deg, #2b7bff, #f6f7f8, #2fa84a)",
+                  background: "linear-gradient(90deg, #2b7bff, #f6f7f8, #2fa84a)",
                   transition: "width 180ms linear",
                 }}
               />
             </div>
-
-            <Button
-              onClick={handleSkip}
-              className="border border-white/35 bg-white/10 text-white hover:bg-white/20"
-            >
-              O&apos;tkazib yuborish
-            </Button>
           </div>
         </div>
       )}
