@@ -5,7 +5,8 @@ import { XMLParser } from "fast-xml-parser";
 
 const root = process.cwd();
 const argInput = process.argv[2]?.trim();
-const inputName = argInput && argInput.length > 0 ? argInput : "anti-curroption-day";
+const inputName =
+  argInput && argInput.length > 0 ? argInput : "anti-curroption-day";
 const slug = inputName.replace(/\.pptx$/i, "");
 
 const pptxPath = path.join(root, "public", "files", `${slug}.pptx`);

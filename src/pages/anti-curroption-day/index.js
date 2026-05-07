@@ -30,7 +30,9 @@ const toReadableParagraphs = (texts = []) => {
     return [];
   }
 
-  const shortLineCount = cleaned.filter((t) => t.split(/\s+/).filter(Boolean).length <= 3).length;
+  const shortLineCount = cleaned.filter(
+    (t) => t.split(/\s+/).filter(Boolean).length <= 3,
+  ).length;
   const mostlyFragmented = shortLineCount / cleaned.length >= 0.35;
 
   if (!mostlyFragmented) {
@@ -79,10 +81,13 @@ export default function AntiCurroptionDayPage() {
           {slides.map((slide) => {
             const paragraphs = toReadableParagraphs(slide.texts);
             const renderImages = getRenderableImages(slide.images);
-            const isLogoMode = paragraphs.length <= 1 && renderImages.length > 0 && renderImages.length <= 3;
+            const isLogoMode =
+              paragraphs.length <= 1 &&
+              renderImages.length > 0 &&
+              renderImages.length <= 3;
 
             const emblemImage = renderImages[0];
-            
+
             return (
               <section
                 key={slide.slide}
@@ -114,13 +119,17 @@ export default function AntiCurroptionDayPage() {
                   )}
 
                   {/* Right column: Content with orange accent bars */}
-                  <div className={`space-y-6 px-6 py-8 md:py-10 ${emblemImage ? "md:w-2/3" : "w-full"}`}>
+                  <div
+                    className={`space-y-6 px-6 py-8 md:py-10 ${emblemImage ? "md:w-2/3" : "w-full"}`}
+                  >
                     {/* Text content with orange left border accent */}
                     {paragraphs?.length > 0 && (
                       <div className="border-l-4 border-orange-500 bg-orange-50/30 px-5 py-4">
                         <div className="space-y-3 text-[15px] leading-7 text-slate-700 md:text-base">
                           {paragraphs.map((text, textIndex) => (
-                            <p key={`${slide.slide}-text-${textIndex}`}>{text}</p>
+                            <p key={`${slide.slide}-text-${textIndex}`}>
+                              {text}
+                            </p>
                           ))}
                         </div>
                       </div>

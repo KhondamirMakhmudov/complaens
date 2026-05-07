@@ -30,7 +30,9 @@ const toReadableParagraphs = (texts = []) => {
     return [];
   }
 
-  const shortLineCount = cleaned.filter((t) => t.split(/\s+/).filter(Boolean).length <= 3).length;
+  const shortLineCount = cleaned.filter(
+    (t) => t.split(/\s+/).filter(Boolean).length <= 3,
+  ).length;
   const mostlyFragmented = shortLineCount / cleaned.length >= 0.35;
 
   if (!mostlyFragmented) {
@@ -66,7 +68,10 @@ const getRenderableImages = (images = []) => {
 export default function CorruptionPresentationPage() {
   const renderContactSlide = (slide) => {
     return (
-      <section key={slide.slide} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_10px_30px_rgba(2,32,71,0.07)]">
+      <section
+        key={slide.slide}
+        className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_10px_30px_rgba(2,32,71,0.07)]"
+      >
         {/* Dark header with website */}
         <div className="bg-linear-to-r from-slate-900 to-slate-800 px-6 py-8 text-white md:px-10">
           <h2 className="text-4xl font-black md:text-5xl">{slide.title}</h2>
@@ -76,7 +81,9 @@ export default function CorruptionPresentationPage() {
         <div className="space-y-6 bg-white px-6 py-10 md:px-10">
           {/* Main contact header */}
           <div className="border-l-4 border-orange-500 bg-linear-to-r from-orange-50 to-orange-100/30 px-5 py-4">
-            <p className="text-lg font-bold text-slate-900">ҚОИДАБУЗАРЛИКЛАР ҲАҚИДА МАЪЛУМ ҚИЛИШ</p>
+            <p className="text-lg font-bold text-slate-900">
+              ҚОИДАБУЗАРЛИКЛАР ҲАҚИДА МАЪЛУМ ҚИЛИШ
+            </p>
           </div>
 
           {/* Contact items grid */}
@@ -85,13 +92,27 @@ export default function CorruptionPresentationPage() {
             <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:shadow-lg hover:border-orange-300">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-orange-600 transition-transform group-hover:scale-110">
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Email</p>
-                  <p className="mt-1 text-lg font-bold text-slate-900 wrap-break-word">stopcorruption@tpp.uz</p>
+                  <p className="text-xs font-semibold uppercase text-slate-500">
+                    Email
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-slate-900 wrap-break-word">
+                    stopcorruption@tpp.uz
+                  </p>
                 </div>
               </div>
             </div>
@@ -100,13 +121,27 @@ export default function CorruptionPresentationPage() {
             <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:shadow-lg hover:border-blue-300">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-600 transition-transform group-hover:scale-110">
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Phone (Online)</p>
-                  <p className="mt-1 text-lg font-bold text-slate-900">55-510-15-09</p>
+                  <p className="text-xs font-semibold uppercase text-slate-500">
+                    Phone (Online)
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-slate-900">
+                    55-510-15-09
+                  </p>
                 </div>
               </div>
             </div>
@@ -115,13 +150,27 @@ export default function CorruptionPresentationPage() {
             <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:shadow-lg hover:border-purple-300">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-100 text-purple-600 transition-transform group-hover:scale-110">
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Mobile</p>
-                  <p className="mt-1 text-lg font-bold text-slate-900">99897-109-00-30</p>
+                  <p className="text-xs font-semibold uppercase text-slate-500">
+                    Mobile
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-slate-900">
+                    99897-109-00-30
+                  </p>
                 </div>
               </div>
             </div>
@@ -130,13 +179,27 @@ export default function CorruptionPresentationPage() {
             <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:shadow-lg hover:border-cyan-300">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 transition-transform group-hover:scale-110">
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Telegram</p>
-                  <p className="mt-1 text-lg font-bold text-slate-900 wrap-break-word">@stopcorruptiontpp_bot</p>
+                  <p className="text-xs font-semibold uppercase text-slate-500">
+                    Telegram
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-slate-900 wrap-break-word">
+                    @stopcorruptiontpp_bot
+                  </p>
                 </div>
               </div>
             </div>
@@ -145,13 +208,27 @@ export default function CorruptionPresentationPage() {
             <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:shadow-lg hover:border-emerald-300">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 transition-transform group-hover:scale-110">
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Website</p>
-                  <p className="mt-1 text-lg font-bold text-slate-900">www.tpp.uz</p>
+                  <p className="text-xs font-semibold uppercase text-slate-500">
+                    Website
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-slate-900">
+                    www.tpp.uz
+                  </p>
                 </div>
               </div>
             </div>
@@ -160,13 +237,27 @@ export default function CorruptionPresentationPage() {
             <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:shadow-lg hover:border-indigo-300">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600 transition-transform group-hover:scale-110">
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 20l4-16m2 16l4-16M6 9h12M6 5h12" />
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 20l4-16m2 16l4-16M6 9h12M6 5h12"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold uppercase text-slate-500">Hashtag</p>
-                  <p className="mt-1 text-lg font-bold text-slate-900">#ies.uzbekistan</p>
+                  <p className="text-xs font-semibold uppercase text-slate-500">
+                    Hashtag
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-slate-900">
+                    #ies.uzbekistan
+                  </p>
                 </div>
               </div>
             </div>
@@ -175,8 +266,12 @@ export default function CorruptionPresentationPage() {
           {/* Bottom banner */}
           <div className="relative overflow-hidden rounded-xl bg-linear-to-r from-blue-600 to-blue-700 px-6 py-6 text-white">
             <div className="relative z-10">
-              <p className="text-sm font-semibold uppercase tracking-wider text-blue-100">Bog'lanish uchun</p>
-              <p className="mt-2 text-lg font-bold">Barcha yo'llar ochiq. Biz siz bilan bog'lanishni kutib turamiz!</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-blue-100">
+                Bog'lanish uchun
+              </p>
+              <p className="mt-2 text-lg font-bold">
+                Barcha yo'llar ochiq. Biz siz bilan bog'lanishni kutib turamiz!
+              </p>
             </div>
           </div>
         </div>
@@ -198,7 +293,10 @@ export default function CorruptionPresentationPage() {
           {slides.map((slide) => {
             const paragraphs = toReadableParagraphs(slide.texts);
             const renderImages = getRenderableImages(slide.images);
-            const isLogoMode = paragraphs.length <= 1 && renderImages.length > 0 && renderImages.length <= 3;
+            const isLogoMode =
+              paragraphs.length <= 1 &&
+              renderImages.length > 0 &&
+              renderImages.length <= 3;
             const isCoverSlide = slide.slide === 1;
 
             if (isCoverSlide) {
@@ -239,7 +337,9 @@ export default function CorruptionPresentationPage() {
                       />
                     )}
 
-                    <p className="mt-4 text-xl font-bold text-slate-700">Тошкент-2025 й.</p>
+                    <p className="mt-4 text-xl font-bold text-slate-700">
+                      Тошкент-2025 й.
+                    </p>
                   </div>
                 </section>
               );
@@ -252,7 +352,7 @@ export default function CorruptionPresentationPage() {
 
             // Content slide layout with emblem, orange bar, and structured sections
             const emblemImage = renderImages[0];
-            
+
             return (
               <section
                 key={slide.slide}
@@ -284,13 +384,17 @@ export default function CorruptionPresentationPage() {
                   )}
 
                   {/* Right column: Content with orange accent bars */}
-                  <div className={`space-y-6 px-6 py-8 md:py-10 ${emblemImage ? "md:w-2/3" : "w-full"}`}>
+                  <div
+                    className={`space-y-6 px-6 py-8 md:py-10 ${emblemImage ? "md:w-2/3" : "w-full"}`}
+                  >
                     {/* Text content with orange left border accent */}
                     {paragraphs?.length > 0 && (
                       <div className="border-l-4 border-orange-500 bg-orange-50/30 px-5 py-4">
                         <div className="space-y-3 text-[15px] leading-7 text-slate-700 md:text-base">
                           {paragraphs.map((text, textIndex) => (
-                            <p key={`${slide.slide}-text-${textIndex}`}>{text}</p>
+                            <p key={`${slide.slide}-text-${textIndex}`}>
+                              {text}
+                            </p>
                           ))}
                         </div>
                       </div>
