@@ -31,7 +31,11 @@ const menuItems = [
     href: "https://docs.google.com/forms/d/e/1FAIpQLScG0ic3AVqEWmb1RyHKENR4_YuzlPcTcpjUmvf-Z46AmLNj7A/viewform",
     kind: "external",
   },
-  { label: "Savodxonlik testi", kind: "soon" },
+  {
+    label: "Korrupsiyaga qarshi kurashish kuni ",
+    href: "/anti-curroption-day",
+    kind: "internal",
+  },
   {
     label: "O'zbekiston Respublikasi davlat ramzlari",
     href: "/files/davlat_ramzlari.pdf",
@@ -101,8 +105,10 @@ export default function Home() {
 
   useEffect(() => {
     if (sessionStorage.getItem("hymnPlayed")) {
-      setIsIntroVisible(false);
-      queueMicrotask(() => setStage("done"));
+      queueMicrotask(() => {
+        setIsIntroVisible(false);
+        setStage("done");
+      });
       return;
     }
 
@@ -178,7 +184,7 @@ export default function Home() {
       return;
     }
 
-    setIsIntroClosing(true);
+    queueMicrotask(() => setIsIntroClosing(true));
 
     const timeoutId = setTimeout(() => {
       setIsIntroVisible(false);
@@ -200,7 +206,9 @@ export default function Home() {
   const currentSlide = infoSlides[activeSlide];
   const CurrentSlideIcon = currentSlide.icon;
   const handlePrevSlide = () => {
-    setActiveSlide((prev) => (prev - 1 + infoSlides.length) % infoSlides.length);
+    setActiveSlide(
+      (prev) => (prev - 1 + infoSlides.length) % infoSlides.length,
+    );
   };
   const handleNextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % infoSlides.length);
@@ -257,7 +265,9 @@ export default function Home() {
                       key={slide.title}
                       onClick={() => setActiveSlide(index)}
                       className={`h-2.5 w-2.5 rounded-full transition ${
-                        activeSlide === index ? "bg-blue-600" : "bg-sky-200 hover:bg-sky-300"
+                        activeSlide === index
+                          ? "bg-blue-600"
+                          : "bg-sky-200 hover:bg-sky-300"
                       }`}
                       aria-label={`${index + 1}-slayd`}
                     />
@@ -295,28 +305,38 @@ export default function Home() {
                 {menuItems.map((item) => (
                   <li key={item.label}>
                     {item.href ? (
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-sky-100 bg-linear-to-b from-white to-sky-50/80 px-3 py-2.5 text-[1rem] font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-md"
-                      >
-                        <span>{item.label}</span>
-                        <span
-                          aria-hidden="true"
-                          className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-[11px] font-bold text-white ${
-                            item.kind === "file"
-                              ? "bg-blue-600"
-                              : "bg-emerald-600"
-                          }`}
-                        >
-                          {item.kind === "file" ? (
-                            <FileIcon className="h-3.5 w-3.5" />
-                          ) : (
-                            <ExternalLinkIcon className="h-3.5 w-3.5" />
-                          )}
-                        </span>
-                      </a>
+                      (() => {
+                        const isExternal = item.kind === "external";
+
+                        return (
+                          <a
+                            href={item.href}
+                            target={isExternal ? "_blank" : undefined}
+                            rel={isExternal ? "noopener noreferrer" : undefined}
+                            className="group flex items-center justify-between gap-3 rounded-xl border border-sky-100 bg-linear-to-b from-white to-sky-50/80 px-3 py-2.5 text-[1rem] font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-md"
+                          >
+                            <span>{item.label}</span>
+                            <span
+                              aria-hidden="true"
+                              className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-[11px] font-bold text-white ${
+                                item.kind === "file"
+                                  ? "bg-blue-600"
+                                  : item.kind === "internal"
+                                    ? "bg-indigo-600"
+                                    : "bg-emerald-600"
+                              }`}
+                            >
+                              {item.kind === "file" ? (
+                                <FileIcon className="h-3.5 w-3.5" />
+                              ) : item.kind === "internal" ? (
+                                <ChevronRightIcon className="h-3.5 w-3.5" />
+                              ) : (
+                                <ExternalLinkIcon className="h-3.5 w-3.5" />
+                              )}
+                            </span>
+                          </a>
+                        );
+                      })()
                     ) : (
                       <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[1rem] font-semibold text-slate-800">
                         <span>{item.label}</span>
@@ -354,19 +374,19 @@ export default function Home() {
                 />
 
                 <div className="min-w-0 flex-1 pt-0.5">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <h2 className="text-lg font-extrabold leading-tight tracking-tight text-slate-900 md:text-xl">
-                    O&apos;zbekiston Respublikasi
-                  </h2>
-                  <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-emerald-700">
-                    Davlat madhiyasi
-                  </span>
-                </div>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h2 className="text-lg font-extrabold leading-tight tracking-tight text-slate-900 md:text-xl">
+                      O&apos;zbekiston Respublikasi
+                    </h2>
+                    <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-emerald-700">
+                      Davlat madhiyasi
+                    </span>
+                  </div>
 
-                <p className="mt-0.5 text-sm font-medium text-slate-600">
-                  Davlat madhiyasi ijro etilmoqda
-                </p>
-              </div>
+                  <p className="mt-0.5 text-sm font-medium text-slate-600">
+                    Davlat madhiyasi ijro etilmoqda
+                  </p>
+                </div>
               </div>
 
               <div className="shrink-0">
@@ -384,7 +404,8 @@ export default function Home() {
                 style={{
                   width: `${progress}%`,
                   height: "100%",
-                  background: "linear-gradient(90deg, #2b7bff, #f6f7f8, #2fa84a)",
+                  background:
+                    "linear-gradient(90deg, #2b7bff, #f6f7f8, #2fa84a)",
                   transition: "width 180ms linear",
                 }}
               />
