@@ -4,20 +4,13 @@ import JSZip from "jszip";
 import { XMLParser } from "fast-xml-parser";
 
 const root = process.cwd();
-const pptxPath = path.join(root, "public", "files", "anti-curroption-day.pptx");
-const assetsDir = path.join(
-  root,
-  "public",
-  "files",
-  "anti-curroption-day-assets",
-);
-const contentPath = path.join(
-  root,
-  "src",
-  "pages",
-  "anti-curroption-day",
-  "content.json",
-);
+const argInput = process.argv[2]?.trim();
+const inputName = argInput && argInput.length > 0 ? argInput : "anti-curroption-day";
+const slug = inputName.replace(/\.pptx$/i, "");
+
+const pptxPath = path.join(root, "public", "files", `${slug}.pptx`);
+const assetsDir = path.join(root, "public", "files", `${slug}-assets`);
+const contentPath = path.join(root, "src", "pages", slug, "content.json");
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -116,7 +109,7 @@ for (const slideXmlPath of slideXmlPaths) {
     const outDiskPath = path.join(assetsDir, outName);
     const imgBuffer = await entry.async("nodebuffer");
     await fs.writeFile(outDiskPath, imgBuffer);
-    images.push(`/files/anti-curroption-day-assets/${outName}`);
+    images.push(`/files/${slug}-assets/${outName}`);
   }
 
   const title = cleanTexts[0] || `Slide ${slideNo}`;
@@ -134,5 +127,6 @@ await fs.mkdir(path.dirname(contentPath), { recursive: true });
 await fs.writeFile(contentPath, JSON.stringify(slides, null, 2), "utf8");
 
 console.log(`EXTRACTED ${slides.length} slides`);
+console.log(`SLUG ${slug}`);
 console.log(`WROTE ${contentPath}`);
 console.log(`IMAGES ${slides.reduce((a, s) => a + s.images.length, 0)}`);

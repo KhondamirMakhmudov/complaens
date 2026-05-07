@@ -51,7 +51,11 @@ const menuItems = [
     href: "/files/asosiy_terminlar.docx",
     kind: "file",
   },
-  { label: "O'quv seminar materiallari" },
+  {
+    label: "Korrupsiya tushunchasi",
+    href: "/corruption-presentation",
+    kind: "internal",
+  },
   { label: "Korxona madaniyati" },
   { label: "Faoliyat ekrani" },
   { label: "Ogohlik davr talabi" },

@@ -24,23 +24,43 @@ const mergePunctuation = (items = []) => {
   return out;
 };
 
-const splitTextGroups = (texts = []) => {
+const toReadableParagraphs = (texts = []) => {
   const cleaned = mergePunctuation(texts);
-  const paragraphs = [];
-  const keywords = [];
-
-  for (const text of cleaned) {
-    const words = text.split(/\s+/).filter(Boolean);
-    const isKeywordLike = words.length <= 3 && text.length <= 30;
-
-    if (isKeywordLike) {
-      keywords.push(text);
-    } else {
-      paragraphs.push(text);
-    }
+  if (cleaned.length === 0) {
+    return [];
   }
 
-  return { paragraphs, keywords };
+  const shortLineCount = cleaned.filter((t) => t.split(/\s+/).filter(Boolean).length <= 3).length;
+  const mostlyFragmented = shortLineCount / cleaned.length >= 0.35;
+
+  if (!mostlyFragmented) {
+    return cleaned;
+  }
+
+  const combined = cleaned
+    .join(" ")
+    .replace(/\s+([,.;:!?])/g, "$1")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  const sentences = combined.split(/(?<=[.!?])\s+/).filter(Boolean);
+  if (sentences.length <= 2) {
+    return [combined];
+  }
+
+  const paragraphs = [];
+  for (let i = 0; i < sentences.length; i += 2) {
+    paragraphs.push(sentences.slice(i, i + 2).join(" "));
+  }
+
+  return paragraphs;
+};
+
+const getRenderableImages = (images = []) => {
+  if (!images?.length) return [];
+  if (images.length > 8) return [];
+  if (images.length > 4) return images.slice(0, 2);
+  return images;
 };
 
 export default function AntiCurroptionDayPage() {
@@ -57,59 +77,83 @@ export default function AntiCurroptionDayPage() {
 
         <div className="space-y-6">
           {slides.map((slide) => {
-            const { paragraphs, keywords } = splitTextGroups(slide.texts);
+            const paragraphs = toReadableParagraphs(slide.texts);
+            const renderImages = getRenderableImages(slide.images);
+            const isLogoMode = paragraphs.length <= 1 && renderImages.length > 0 && renderImages.length <= 3;
 
+            const emblemImage = renderImages[0];
+            
             return (
               <section
                 key={slide.slide}
-                className="overflow-hidden rounded-3xl border border-sky-100 bg-white shadow-[0_10px_30px_rgba(2,32,71,0.07)]"
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_10px_30px_rgba(2,32,71,0.07)]"
               >
-                <div className="border-b border-slate-100 bg-linear-to-r from-slate-50 to-sky-50/60 px-5 py-4 md:px-7">
-                  <h2 className="text-balance text-xl font-extrabold text-slate-900 md:text-2xl">
+                {/* Orange accent bar at top */}
+                <div className="h-2 bg-orange-500"></div>
+
+                {/* Header with title */}
+                <div className="border-b border-slate-100 bg-white px-6 py-5 md:px-8">
+                  <h2 className="text-balance text-2xl font-black text-slate-900 md:text-3xl">
                     {slide.title}
                   </h2>
                 </div>
 
-                <div className="space-y-5 px-5 py-5 md:px-7 md:py-6">
-                  {paragraphs?.length > 0 && (
-                    <div className="space-y-3 text-[15px] leading-7 text-slate-700 md:text-base">
-                      {paragraphs.map((text, textIndex) => (
-                        <p key={`${slide.slide}-text-${textIndex}`}>{text}</p>
-                      ))}
+                {/* Two-column layout: emblem on left, content on right */}
+                <div className="flex flex-col md:flex-row">
+                  {/* Left column: Emblem */}
+                  {emblemImage && (
+                    <div className="flex items-center justify-center border-r border-slate-100 bg-slate-50/50 px-6 py-8 md:w-1/3 md:py-10">
+                      <Image
+                        src={emblemImage}
+                        alt="O'zbekiston gerbi"
+                        width={200}
+                        height={200}
+                        className="h-48 w-48 object-contain md:h-56 md:w-56"
+                      />
                     </div>
                   )}
 
-                  {keywords?.length >= 4 && (
-                    <div className="flex flex-wrap gap-2 border-t border-dashed border-slate-200 pt-4">
-                      {keywords.map((word, keywordIndex) => (
-                        <span
-                          key={`${slide.slide}-keyword-${keywordIndex}`}
-                          className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-sm font-semibold text-sky-800"
-                        >
-                          {word}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {slide.images?.length > 0 && (
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      {slide.images.map((src, imageIndex) => (
-                        <div
-                          key={`${slide.slide}-img-${imageIndex}`}
-                          className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm"
-                        >
-                          <Image
-                            src={src}
-                            alt={`${slide.title} — rasm ${imageIndex + 1}`}
-                            width={1200}
-                            height={700}
-                            className="h-auto w-full transition duration-300 hover:scale-[1.01]"
-                          />
+                  {/* Right column: Content with orange accent bars */}
+                  <div className={`space-y-6 px-6 py-8 md:py-10 ${emblemImage ? "md:w-2/3" : "w-full"}`}>
+                    {/* Text content with orange left border accent */}
+                    {paragraphs?.length > 0 && (
+                      <div className="border-l-4 border-orange-500 bg-orange-50/30 px-5 py-4">
+                        <div className="space-y-3 text-[15px] leading-7 text-slate-700 md:text-base">
+                          {paragraphs.map((text, textIndex) => (
+                            <p key={`${slide.slide}-text-${textIndex}`}>{text}</p>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  )}
+                      </div>
+                    )}
+
+                    {/* Images with orange accent */}
+                    {renderImages.length > 0 && emblemImage && (
+                      <div className="border-l-4 border-orange-500 bg-orange-50/30 px-5 py-4">
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          {renderImages.slice(1).map((src, imageIndex) => (
+                            <div
+                              key={`${slide.slide}-img-${imageIndex}`}
+                              className="overflow-hidden rounded-xl border border-slate-200 bg-white"
+                            >
+                              <Image
+                                src={src}
+                                alt={`${slide.title} — rasm ${imageIndex + 1}`}
+                                width={600}
+                                height={400}
+                                className="h-auto w-full object-contain p-3"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {slide.images?.length > renderImages.length && (
+                      <p className="text-sm text-slate-500">
+                        Ayrim bezakli rasmlar avtomatik yashirildi.
+                      </p>
+                    )}
+                  </div>
                 </div>
               </section>
             );
