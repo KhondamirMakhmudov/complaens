@@ -10,6 +10,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  BookOpenIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ExternalLinkIcon,
+  FileIcon,
+  MegaphoneIcon,
+  ShieldIcon,
+  VolumeIcon,
+} from "@/components/ui/site-icons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,11 +55,48 @@ const menuItems = [
   { label: "Aloqa kanallari" },
 ];
 
+const infoSlides = [
+  {
+    icon: ShieldIcon,
+    title: "Firibgarlik uchun javobgarlik",
+    description:
+      "Platforma xodimlar va fuqarolar uchun ochiq, shaffof hamda xavfsiz muhit yaratadi. Korrupsiya va firibgarlik holatlari bo'yicha xabar berish, savodxonlikni oshirish va qonunchilikni o'rganish uchun yagona markaz.",
+    points: [
+      "50x gacha jarima",
+      "Ishonchni suiiste'mol qilish taqiqlanadi",
+      "Raqamli iz qoldirish monitoringi",
+    ],
+  },
+  {
+    icon: MegaphoneIcon,
+    title: "Xabar berish tizimi",
+    description:
+      "Anonim va ochiq murojaatlar uchun yagona kanallar ishlaydi. Har bir murojaat ro'yxatga olinadi, nazorat qilinadi va mas'ullar tomonidan ko'rib chiqiladi.",
+    points: [
+      "Anonim murojaat imkoniyati",
+      "24/7 qabul va monitoring",
+      "Natijalar bo'yicha qayta aloqa",
+    ],
+  },
+  {
+    icon: BookOpenIcon,
+    title: "Bilim va profilaktika",
+    description:
+      "Xodimlar uchun testlar, me'yoriy hujjatlar va asosiy terminlar jamlangan. Maqsad — ogohlikni oshirish va huquqiy savodxonlikni mustahkamlash.",
+    points: [
+      "Savodxonlik testi",
+      "Me'yoriy hujjatlar bazasi",
+      "O'quv materiallari",
+    ],
+  },
+];
+
 export default function Home() {
   const audioRef = useRef(null);
   const gestureHandlerRef = useRef(null);
   const [stage, setStage] = useState("loading");
   const [progress, setProgress] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     if (sessionStorage.getItem("hymnPlayed")) {
@@ -116,6 +163,14 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % infoSlides.length);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   const handleSkip = () => {
     if (audioRef.current) {
       audioRef.current.pause();
@@ -126,6 +181,14 @@ export default function Home() {
   };
 
   const showIntroOverlay = stage !== "done";
+  const currentSlide = infoSlides[activeSlide];
+  const CurrentSlideIcon = currentSlide.icon;
+  const handlePrevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + infoSlides.length) % infoSlides.length);
+  };
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % infoSlides.length);
+  };
 
   return (
     <div
@@ -149,26 +212,19 @@ export default function Home() {
           <Card className="border-sky-100 bg-linear-to-br from-white to-sky-50/80 shadow-md">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center gap-3 text-2xl text-[#0f2c59] md:text-3xl">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-xl">
-                  🛡️
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+                  <CurrentSlideIcon className="h-5 w-5" />
                 </span>
-                Firibgarlik uchun javobgarlik
+                {currentSlide.title}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-base leading-7 text-[#264f84]">
-                Platforma xodimlar va fuqarolar uchun ochiq, shaffof hamda
-                xavfsiz muhit yaratadi. Korrupsiya va firibgarlik holatlari
-                bo&apos;yicha xabar berish, savodxonlikni oshirish va
-                qonunchilikni o&apos;rganish uchun yagona markaz.
+                {currentSlide.description}
               </p>
 
               <div className="grid gap-2.5 md:grid-cols-3">
-                {[
-                  "50x gacha jarima",
-                  "Ishonchni suiiste'mol qilish taqiqlanadi",
-                  "Raqamli iz qoldirish monitoringi",
-                ].map((item) => (
+                {currentSlide.points.map((item) => (
                   <div
                     key={item}
                     className="rounded-xl bg-linear-to-r from-blue-700 to-blue-500 px-3 py-2.5 text-sm font-semibold leading-snug text-white shadow-md"
@@ -176,6 +232,38 @@ export default function Home() {
                     {item}
                   </div>
                 ))}
+              </div>
+
+              <div className="flex items-center justify-between gap-3 border-t border-sky-100 pt-3">
+                <div className="flex items-center gap-2">
+                  {infoSlides.map((slide, index) => (
+                    <button
+                      key={slide.title}
+                      onClick={() => setActiveSlide(index)}
+                      className={`h-2.5 w-2.5 rounded-full transition ${
+                        activeSlide === index ? "bg-blue-600" : "bg-sky-200 hover:bg-sky-300"
+                      }`}
+                      aria-label={`${index + 1}-slayd`}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Button
+                    onClick={handlePrevSlide}
+                    className="h-8 border border-sky-200 bg-white px-3 text-slate-700 hover:bg-sky-50"
+                  >
+                    <ChevronLeftIcon className="h-4 w-4" />
+                    Oldingi
+                  </Button>
+                  <Button
+                    onClick={handleNextSlide}
+                    className="h-8 border border-sky-200 bg-white px-3 text-slate-700 hover:bg-sky-50"
+                  >
+                    Keyingi
+                    <ChevronRightIcon className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -206,9 +294,11 @@ export default function Home() {
                               : "bg-emerald-600"
                           }`}
                         >
-                          {item.kind === "file"
-                            ? (item.href?.split(".").pop() || "FILE").toUpperCase()
-                            : "↗"}
+                          {item.kind === "file" ? (
+                            <FileIcon className="h-3.5 w-3.5" />
+                          ) : (
+                            <ExternalLinkIcon className="h-3.5 w-3.5" />
+                          )}
                         </span>
                       </a>
                     ) : (
@@ -246,8 +336,9 @@ export default function Home() {
             </p>
 
             {stage === "idle" && (
-              <p className="mb-3 font-bold">
-                🔊 Ovozni boshlash uchun bir marta bosing
+              <p className="mb-3 flex items-center justify-center gap-2 font-bold">
+                <VolumeIcon className="h-4 w-4" />
+                Ovozni boshlash uchun bir marta bosing
               </p>
             )}
 
