@@ -1,6 +1,15 @@
 import Image from "next/image";
 import { Geist } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -8,16 +17,32 @@ const geistSans = Geist({
 });
 
 const menuItems = [
-  "Anonim so'rovnoma",
-  "Savodxonlik testi",
-  "O'zbekiston Respublikasi davlat ramzlari",
-  "Sohaga oid me'yoriy hujjatlar",
-  "Sohaga oid asosiy terminlar",
-  "O'quv seminar materiallari",
-  "Korxona madaniyati",
-  "Faoliyat ekrani",
-  "Ogohlik davr talabi",
-  "Aloqa kanallari",
+  {
+    label: "Anonim so'rovnoma",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLScG0ic3AVqEWmb1RyHKENR4_YuzlPcTcpjUmvf-Z46AmLNj7A/viewform",
+    kind: "external",
+  },
+  { label: "Savodxonlik testi", kind: "soon" },
+  {
+    label: "O'zbekiston Respublikasi davlat ramzlari",
+    href: "/files/davlat_ramzlari.pdf",
+    kind: "file",
+  },
+  {
+    label: "Sohaga oid me'yoriy hujjatlar",
+    href: "/files/meyoriy_hujjatlar.docx",
+    kind: "file",
+  },
+  {
+    label: "Sohaga oid asosiy terminlar",
+    href: "/files/asosiy_terminlar.docx",
+    kind: "file",
+  },
+  { label: "O'quv seminar materiallari" },
+  { label: "Korxona madaniyati" },
+  { label: "Faoliyat ekrani" },
+  { label: "Ogohlik davr talabi" },
+  { label: "Aloqa kanallari" },
 ];
 
 export default function Home() {
@@ -46,7 +71,9 @@ export default function Home() {
       if (!audio.duration || Number.isNaN(audio.duration)) {
         return;
       }
-      setProgress(Math.min(100, Math.round((audio.currentTime / audio.duration) * 100)));
+      setProgress(
+        Math.min(100, Math.round((audio.currentTime / audio.duration) * 100)),
+      );
     };
 
     const bindGestureFallback = () => {
@@ -101,192 +128,147 @@ export default function Home() {
   const showIntroOverlay = stage !== "done";
 
   return (
-    <div className={`${geistSans.className} min-h-screen bg-[#f3f7fb] text-[#0f2c59]`}>
-      <main
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          padding: "24px 20px 40px",
-        }}
-      >
-        <header style={{ textAlign: "center", marginBottom: 24 }}>
-          <h1
-            style={{
-              margin: 0,
-              color: "#0a2ad6",
-              fontStyle: "italic",
-              fontWeight: 800,
-              lineHeight: 1.2,
-              fontSize: "clamp(1.6rem, 3vw, 2.6rem)",
-              textDecoration: "underline",
-            }}
-          >
-            Korrupsiyaga qarshi kurashish bo&apos;yicha
-            <br />
-            “Sirdaryo IES” platformasi
-          </h1>
-        </header>
+    <div
+      className={`${geistSans.className} min-h-screen bg-slate-100 text-[#0f2c59]`}
+    >
+      <main className="mx-auto flex min-h-screen w-full max-w-330 flex-col gap-5 px-5 py-6">
+        <Card className="border-sky-100 bg-linear-to-b from-white to-sky-50/70 shadow-md">
+          <CardHeader className="items-center pb-4 text-center">
+            <CardTitle className="text-balance bg-linear-to-r from-blue-700 to-blue-500 bg-clip-text text-3xl font-black leading-tight tracking-tight text-transparent md:text-5xl">
+              Korrupsiyaga qarshi kurashish bo&apos;yicha
+              <br />
+              “Issiqlik Elektr Stansiyalari AJ” platformasi
+            </CardTitle>
+            <CardDescription className="text-sm font-medium text-sky-800 md:text-base">
+              Ochiq, xavfsiz va zamonaviy axborot maydoni
+            </CardDescription>
+          </CardHeader>
+        </Card>
 
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.2fr 0.8fr",
-            gap: 20,
-            alignItems: "stretch",
-          }}
-        >
-          <div
-            style={{
-              background: "linear-gradient(135deg, #ffffff, #eaf4ff)",
-              border: "1px solid #cddff3",
-              borderRadius: 18,
-              padding: 22,
-              boxShadow: "0 8px 24px rgba(8, 38, 88, 0.08)",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-              <span style={{ fontSize: 28 }}>🛡️</span>
-              <h2 style={{ margin: 0, fontSize: "clamp(1.1rem, 2.2vw, 1.8rem)" }}>
+        <section className="grid flex-1 gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+          <Card className="border-sky-100 bg-linear-to-br from-white to-sky-50/80 shadow-md">
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-3 text-2xl text-[#0f2c59] md:text-3xl">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-xl">
+                  🛡️
+                </span>
                 Firibgarlik uchun javobgarlik
-              </h2>
-            </div>
-            <p style={{ margin: "0 0 16px", color: "#264f84", lineHeight: 1.6 }}>
-              Platforma xodimlar va fuqarolar uchun ochiq, shaffof hamda xavfsiz muhit yaratadi.
-              Korrupsiya va firibgarlik holatlari bo&apos;yicha xabar berish, savodxonlikni oshirish va
-              qonunchilikni o&apos;rganish uchun yagona markaz.
-            </p>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                gap: 10,
-              }}
-            >
-              {[
-                "50x gacha jarima",
-                "Ishonchni suiiste'mol qilish taqiqlanadi",
-                "Raqamli iz qoldirish monitoringi",
-              ].map((item) => (
-                <div
-                  key={item}
-                  style={{
-                    borderRadius: 10,
-                    background: "#0f5fab",
-                    color: "#fff",
-                    fontSize: "0.9rem",
-                    padding: "10px 12px",
-                    fontWeight: 600,
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-        </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-base leading-7 text-[#264f84]">
+                Platforma xodimlar va fuqarolar uchun ochiq, shaffof hamda
+                xavfsiz muhit yaratadi. Korrupsiya va firibgarlik holatlari
+                bo&apos;yicha xabar berish, savodxonlikni oshirish va
+                qonunchilikni o&apos;rganish uchun yagona markaz.
+              </p>
 
-          <aside
-            style={{
-              background: "#ffffff",
-              border: "1px solid #d7e5f5",
-              borderRadius: 18,
-              padding: 18,
-              boxShadow: "0 8px 24px rgba(8, 38, 88, 0.08)",
-            }}
-          >
-            <h3 style={{ marginTop: 0, marginBottom: 12, color: "#0a2ad6", fontSize: "1.3rem" }}>
-              Bo&apos;limlar
-            </h3>
-            <ul style={{ margin: 0, paddingLeft: 18, display: "grid", gap: 10 }}>
-              {menuItems.map((item) => (
-                <li key={item} style={{ fontSize: "1.05rem", fontWeight: 700, lineHeight: 1.3 }}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </aside>
+              <div className="grid gap-2.5 md:grid-cols-3">
+                {[
+                  "50x gacha jarima",
+                  "Ishonchni suiiste'mol qilish taqiqlanadi",
+                  "Raqamli iz qoldirish monitoringi",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-xl bg-linear-to-r from-blue-700 to-blue-500 px-3 py-2.5 text-sm font-semibold leading-snug text-white shadow-md"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-sky-100 bg-linear-to-b from-white to-sky-50/60 shadow-md">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-2xl text-blue-700">
+                Bo&apos;limlar
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="grid gap-2.5">
+                {menuItems.map((item) => (
+                  <li key={item.label}>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-sky-100 bg-linear-to-b from-white to-sky-50/80 px-3 py-2.5 text-[1rem] font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-md"
+                      >
+                        <span>{item.label}</span>
+                        <span
+                          aria-hidden="true"
+                          className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-[11px] font-bold text-white ${
+                            item.kind === "file"
+                              ? "bg-blue-600"
+                              : "bg-emerald-600"
+                          }`}
+                        >
+                          {item.kind === "file"
+                            ? (item.href?.split(".").pop() || "FILE").toUpperCase()
+                            : "↗"}
+                        </span>
+                      </a>
+                    ) : (
+                      <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[1rem] font-semibold text-slate-800">
+                        <span>{item.label}</span>
+                        <Badge className="border-slate-200 bg-slate-100 text-slate-500">
+                          Tez kunda
+                        </Badge>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
         </section>
       </main>
 
       {showIntroOverlay && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(4, 34, 13, 0.55)",
-            backdropFilter: "blur(2px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 50,
-            padding: 20,
-          }}
-        >
-          <div
-            style={{
-              width: "min(640px, 96vw)",
-              background: "linear-gradient(180deg, rgba(18,93,45,0.95), rgba(12,66,31,0.96))",
-              border: "1px solid rgba(255,255,255,0.22)",
-              color: "#ffffff",
-              borderRadius: 16,
-              boxShadow: "0 22px 60px rgba(0,0,0,0.38)",
-              padding: 24,
-              textAlign: "center",
-            }}
-          >
+        <div className="pointer-events-none fixed left-0 right-0 top-3 z-50 flex justify-center px-3">
+          <div className="pointer-events-auto w-full max-w-160 rounded-2xl border border-white/25 bg-linear-to-b from-emerald-700/95 to-emerald-900/95 p-4 text-center text-white shadow-2xl">
             <Image
               src="/icons/uzbekistan-flag.svg"
               alt="Flag of Uzbekistan"
               width={210}
               height={140}
               priority
-              style={{ margin: "0 auto 14px", height: "auto" }}
+              className="mx-auto mb-3 h-auto"
             />
-            <h2 style={{ margin: "0 0 8px", fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}>
+            <h2 className="mb-2 text-[clamp(1.6rem,3vw,2.2rem)] font-bold">
               O&apos;zbekiston Respublikasi
             </h2>
-            <p style={{ margin: "0 0 12px", opacity: 0.9, fontSize: "1.02rem" }}>
+            <p className="mb-3 text-base opacity-90">
               Davlat madhiyasi ijro etilmoqda
             </p>
 
             {stage === "idle" && (
-              <p style={{ margin: "0 0 12px", fontWeight: 700 }}>🔊 Ovozni boshlash uchun bir marta bosing</p>
+              <p className="mb-3 font-bold">
+                🔊 Ovozni boshlash uchun bir marta bosing
+              </p>
             )}
 
-            <div
-              style={{
-                width: "100%",
-                height: 8,
-                borderRadius: 999,
-                background: "rgba(255,255,255,0.2)",
-                overflow: "hidden",
-                marginBottom: 12,
-              }}
-            >
+            <div className="mb-3 h-2 w-full overflow-hidden rounded-full bg-white/25">
               <div
                 style={{
                   width: `${progress}%`,
                   height: "100%",
-                  background: "linear-gradient(90deg, #2b7bff, #f6f7f8, #2fa84a)",
+                  background:
+                    "linear-gradient(90deg, #2b7bff, #f6f7f8, #2fa84a)",
                   transition: "width 180ms linear",
                 }}
               />
             </div>
 
-            <button
+            <Button
               onClick={handleSkip}
-              style={{
-                border: "1px solid rgba(255,255,255,0.35)",
-                background: "rgba(255,255,255,0.08)",
-                color: "#fff",
-                borderRadius: 10,
-                padding: "10px 16px",
-                cursor: "pointer",
-                fontWeight: 700,
-              }}
+              className="border border-white/35 bg-white/10 text-white hover:bg-white/20"
             >
               O&apos;tkazib yuborish
-            </button>
+            </Button>
           </div>
         </div>
       )}
