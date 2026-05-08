@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Geist } from "next/font/google";
+import { useRouter } from "next/router";
+import { ChevronLeftIcon } from "@/components/ui/site-icons";
 import slides from "./content.json";
 
 const geistSans = Geist({
@@ -66,6 +68,8 @@ const getRenderableImages = (images = []) => {
 };
 
 export default function CorruptionPresentationPage() {
+  const router = useRouter();
+
   const renderContactSlide = (slide) => {
     return (
       <section
@@ -283,6 +287,16 @@ export default function CorruptionPresentationPage() {
       className={`${geistSans.className} min-h-screen bg-linear-to-b from-slate-100 via-sky-50/50 to-slate-100 text-slate-900`}
     >
       <main className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6 md:py-10">
+        <div className="mb-6">
+          <button
+            onClick={() => router.push('/')}
+            className="inline-flex items-center gap-2 rounded-lg border border-sky-200 bg-white px-4 py-2 font-semibold text-slate-700 hover:bg-sky-50 transition"
+          >
+            <ChevronLeftIcon className="h-5 w-5" />
+            Ortga
+          </button>
+        </div>
+
         <header className="mb-7 rounded-3xl border border-sky-100 bg-white/95 p-5 shadow-[0_12px_40px_rgba(2,32,71,0.08)] backdrop-blur-sm md:p-8">
           <h1 className="text-balance bg-linear-to-r from-blue-700 to-blue-500 bg-clip-text text-2xl font-black text-transparent md:text-4xl">
             Korrupsiya taqdimoti materiallari

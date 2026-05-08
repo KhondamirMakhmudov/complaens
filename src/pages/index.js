@@ -100,18 +100,26 @@ const infoSlides = [
 
 export default function Home() {
   const audioRef = useRef(null);
+  const videoRef = useRef(null);
   const gestureHandlerRef = useRef(null);
   const [stage, setStage] = useState("loading");
   const [progress, setProgress] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const [isIntroClosing, setIsIntroClosing] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
+    // If hymn was already played, don't play it again
     if (sessionStorage.getItem("hymnPlayed")) {
       queueMicrotask(() => {
         setIsIntroVisible(false);
         setStage("done");
+        // Only show video if it hasn't been played yet AND we're coming back to the page
+        // (not on initial load when hymn just finished)
+        if (!sessionStorage.getItem("videoPlayed")) {
+          setIsVideoPlaying(true);
+        }
       });
       return;
     }
@@ -124,6 +132,8 @@ export default function Home() {
       sessionStorage.setItem("hymnPlayed", "true");
       setProgress(100);
       setStage("done");
+      // Auto-play video only on first load after hymn finishes
+      setIsVideoPlaying(true);
     };
 
     const handleTimeUpdate = () => {
@@ -205,6 +215,17 @@ export default function Home() {
     }
     sessionStorage.setItem("hymnPlayed", "true");
     setStage("done");
+    // Auto-play video when skipping hymn
+    setIsVideoPlaying(true);
+  };
+
+  const handleVideoEnd = () => {
+    sessionStorage.setItem("videoPlayed", "true");
+    setIsVideoPlaying(false);
+  };
+
+  const handleBackButton = () => {
+    setIsVideoPlaying(false);
   };
 
   const currentSlide = infoSlides[activeSlide];
@@ -222,6 +243,28 @@ export default function Home() {
     <div
       className={`${geistSans.className} min-h-screen bg-slate-100 text-[#0f2c59]`}
     >
+      {isVideoPlaying && (
+        <div className="fixed left-0 right-0 top-0 bottom-0 z-50 flex flex-col items-center justify-center bg-black w-full h-full">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            controls
+            autoPlay
+            onEnded={handleVideoEnd}
+          >
+            <source src="/videos/president.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button
+            onClick={handleBackButton}
+            className="absolute top-4 left-4 z-60 flex items-center gap-2 bg-white/90 hover:bg-white text-slate-900 px-4 py-2 rounded-lg font-semibold shadow-lg transition"
+          >
+            <ChevronLeftIcon className="h-5 w-5" />
+            Ortga
+          </button>
+        </div>
+      )}
+
       <main className="mx-auto flex min-h-screen w-full max-w-330 flex-col gap-5 px-5 py-6">
         <Card className="border-sky-100 bg-linear-to-b from-white to-sky-50/70 shadow-md">
           <CardHeader className="items-center pb-4 text-center">
