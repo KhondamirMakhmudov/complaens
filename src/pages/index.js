@@ -56,6 +56,11 @@ const menuItems = [
     href: "/corruption-presentation",
     kind: "internal",
   },
+  {
+    label: "Davlat xaridlari va korrupsiya",
+    href: "/president_feedbacks",
+    kind: "internal",
+  },
   { label: "Korxona madaniyati" },
   { label: "Faoliyat ekrani" },
   { label: "Ogohlik davr talabi" },
