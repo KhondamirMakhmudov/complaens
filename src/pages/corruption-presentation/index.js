@@ -289,7 +289,7 @@ export default function CorruptionPresentationPage() {
       <main className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6 md:py-10">
         <div className="mb-6">
           <button
-            onClick={() => router.push('/')}
+            onClick={() => router.push("/")}
             className="inline-flex items-center gap-2 rounded-lg border border-sky-200 bg-white px-4 py-2 font-semibold text-slate-700 hover:bg-sky-50 transition"
           >
             <ChevronLeftIcon className="h-5 w-5" />

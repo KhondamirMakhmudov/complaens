@@ -1,7 +1,7 @@
-#define MyAppName "Complaens"
+#define MyAppName "АНТИКОР ДАСТУР ИЭС АЖ"
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "Sirdaryo IES"
-#define MyAppExeName "Complaens.exe"
+#define MyAppExeName "AntikorsdasturIES.exe"
 #define MyAppSource "C:\Users\Администратор\ies-projects\complaens\Complaens-win32-x64"
 
 [Setup]
