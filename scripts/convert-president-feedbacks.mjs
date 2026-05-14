@@ -4,8 +4,19 @@ import JSZip from "jszip";
 
 const root = process.cwd();
 const pptxPath = path.join(root, "public", "files", "president_feedbacks.pptx");
-const outputJsonPath = path.join(root, "src", "pages", "president_feedbacks", "content.json");
-const outputAssetsDir = path.join(root, "public", "files", "president_feedbacks-assets");
+const outputJsonPath = path.join(
+  root,
+  "src",
+  "pages",
+  "president_feedbacks",
+  "content.json",
+);
+const outputAssetsDir = path.join(
+  root,
+  "public",
+  "files",
+  "president_feedbacks-assets",
+);
 
 const decodeXml = (text = "") =>
   text
@@ -59,9 +70,7 @@ const run = async () => {
     const slideXml = await zip.file(slidePath).async("string");
 
     const textMatches = [...slideXml.matchAll(/<a:t>([\s\S]*?)<\/a:t>/g)];
-    const texts = textMatches
-      .map((m) => decodeXml(m[1]))
-      .filter(Boolean);
+    const texts = textMatches.map((m) => decodeXml(m[1])).filter(Boolean);
 
     const title = texts[0] || `Slide ${slideNo}`;
 
@@ -108,7 +117,11 @@ const run = async () => {
     });
   }
 
-  await fs.writeFile(outputJsonPath, `${JSON.stringify(slides, null, 2)}\n`, "utf8");
+  await fs.writeFile(
+    outputJsonPath,
+    `${JSON.stringify(slides, null, 2)}\n`,
+    "utf8",
+  );
 
   console.log(`Converted ${slides.length} slides.`);
   console.log(`JSON: ${outputJsonPath}`);

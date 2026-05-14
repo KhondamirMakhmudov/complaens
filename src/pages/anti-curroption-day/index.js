@@ -13,6 +13,8 @@ const mergePunctuation = (items = []) => {
   const out = [];
   for (const item of items) {
     const value = String(item || "").trim();
+
+    
     if (!value) continue;
 
     if ([".", ",", ";", ":", "!", "?"].includes(value) && out.length > 0) {

@@ -19,11 +19,188 @@ import {
   MegaphoneIcon,
   ShieldIcon,
 } from "@/components/ui/site-icons";
+import {
+  TrendingUp,
+  Shield,
+  Zap,
+  AlertCircle,
+  Users,
+  Target,
+  CheckCircle2,
+  Award,
+} from "lucide-react";
+
+// Add styles for animations
+const animationStyles = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(43, 123, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(43, 123, 255, 0.5);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.8s ease-out forwards;
+  }
+
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-effect-dark {
+    background: rgba(15, 44, 89, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const corruptionStats = [
+  {
+    icon: TrendingUp,
+    stat: "$2.6T",
+    label: "Yillik global zarar",
+    description: "Dunyo iqtisodiyotiga yetkazadigan korrupsiyaning zayali",
+  },
+  {
+    icon: Shield,
+    stat: "100%",
+    label: "Keng ko'lamli nazorat",
+    description: "Barcha qatlamlarni jalb qilish va oldini olish",
+  },
+  {
+    icon: Zap,
+    stat: "24/7",
+    label: "Anonim kanallar",
+    description: "Xabar berish va murojaat qilish imkoniyati",
+  },
+  {
+    icon: Award,
+    stat: "419-QON",
+    label: "Huquqiy baza",
+    description: "O'zbekiston Respublikasi korrupsiyaga qarshi kurashish",
+  },
+];
+
+const presidentInsights = [
+  {
+    quote:
+      "Korrupsiya bilan hech qachon maqsadimizga erisha olmayiz. Korrupsiyaga qarshi kurashishda aholining barcha qatlamlari, eng yaxshi mutahassislar jalb qilinmas ekan, jamiyatimizning barcha a'zolari, ta'bir joiz bo'lsa 'halollik vaksinasi' bilan emlanmas ekan, o'z oldimizga qo'ygan yuqsak maqsadlariga erisha olmayiz. Biz korrupsiyaning oqibatlari bilan kurashishdan uning barvoqt oldini olishga o'tishimiz kerak.",
+    source: "O'zbekiston Respublikasi Prezidenti",
+    emphasis: "Halollik va oldini olish",
+    image: "/files/president_feedbacks-assets/anti_corruption.jpg",
+  },
+  {
+    quote:
+      "O'zbekiston Respublikasining asosiy maqsadi - shaffoflik, adolatlilik va xalqga xizmat qilishdir. Korrupsiyaga qarshi kurash - bu bizning davlatiy siyosatimizning eng muhim yo'nalishi.",
+    source: "O'zbekiston Respublikasi Vazifalar",
+    emphasis: "Shaffoflik va adolatlilik",
+    image: "/files/president_image.jpg",
+  },
+  {
+    quote:
+      "Korrupsiyani oldini olish va uni mahalliy darajada to'xtatish - bu davlat idoralari va jamiyatning birgalikdagi mas'uliytasidir. Javobgarlik va etikat asosida ishlash - bu bizning yo'nalishimiz.",
+    source: "O'zbekiston Respublikasi Davlat Siyosati",
+    emphasis: "Mas'uliyat va etikat",
+    image: "/files/president_image.jpg",
+  },
+  {
+    quote:
+      "Xalqaro standartlarga amal qilgan holda, korrupsiyaga qarshi kuchli turish, monitoring tizimlarini yaratish va fuqaro jamiyatining roli - davlatning taraqqiyotining asos bo'ladi.",
+    source: "O'zbekiston Respublikasi Islohotlar Dasturi",
+    emphasis: "Xalqaro standartlar",
+    image: "/files/president_image.jpg",
+  },
+];
+
+const reformsMilestones = [
+  {
+    year: "2023-2025",
+    title: "Yangi qonunlar",
+    description:
+      "Korrupsiyaga qarshi kurashish bo'yicha yangi qonunlar qabul qilindi, huquqiy bazani mustahkamladi.",
+  },
+  {
+    year: "2025",
+    title: "Elektron xizmatlari",
+    description:
+      "Elektron davlat xizmatlari joriy etilishi orqali shaffoflik oshirildi.",
+  },
+  {
+    year: "2025",
+    title: "Qaynar chiziq",
+    description:
+      'Korrupsiyaga qarshi "qaynar chiziq" faol, fuqarolar anonim murojaat qilishlari mumkin.',
+  },
+];
 
 const menuItems = [
   {
@@ -32,7 +209,7 @@ const menuItems = [
     kind: "external",
   },
   {
-    label: "Korrupsiyaga qarshi kurashish kuni ",
+    label: "Korrupsiyaga qarshi kurashish kuni",
     href: "/anti-curroption-day",
     kind: "internal",
   },
@@ -51,55 +228,51 @@ const menuItems = [
     href: "/files/asosiy_terminlar.docx",
     kind: "file",
   },
-  {
-    label: "Korrupsiya tushunchasi",
-    href: "/corruption-presentation",
-    kind: "internal",
-  },
-  {
-    label: "Davlat xaridlari va korrupsiya",
-    href: "/president_feedbacks",
-    kind: "internal",
-  },
-  { label: "Korxona madaniyati" },
-  { label: "Faoliyat ekrani" },
-  { label: "Ogohlik davr talabi" },
-  { label: "Aloqa kanallari" },
 ];
 
-const infoSlides = [
+const corruptionPresentationSlides = [
   {
-    icon: ShieldIcon,
-    title: "Firibgarlik uchun javobgarlik",
-    description:
-      "Platforma xodimlar va fuqarolar uchun ochiq, shaffof hamda xavfsiz muhit yaratadi. Korrupsiya va firibgarlik holatlari bo'yicha xabar berish, savodxonlikni oshirish va qonunchilikni o'rganish uchun yagona markaz.",
-    points: [
-      "50x gacha jarima",
-      "Ishonchni suiiste'mol qilish taqiqlanadi",
-      "Raqamli iz qoldirish monitoringi",
-    ],
+    slide: 1,
+    title: "Korrupsiyaga qarshi kurashish va uning huquqiy asoslari",
+    description: "Tashkent-2025 y., 'Issiqlik elektr stansiyalari' AJ",
+    image: "/files/corruption-presentation-assets/slide-01-1.png",
   },
   {
-    icon: MegaphoneIcon,
-    title: "Xabar berish tizimi",
+    slide: 2,
+    title: "O'zbekiston Respublikasining qonuni",
     description:
-      "Anonim va ochiq murojaatlar uchun yagona kanallar ishlaydi. Har bir murojaat ro'yxatga olinadi, nazorat qilinadi va mas'ullar tomonidan ko'rib chiqiladi.",
-    points: [
-      "Anonim murojaat imkoniyati",
-      "24/7 qabul va monitoring",
-      "Natijalar bo'yicha qayta aloqa",
-    ],
+      "ORQ-419-son qonuni 3-moddasi: Korrupsiya - shaxsning o'z mansab yoki xizmat mavqeidan shaxsiy manfaatlarini yohud o'zga shaxslarning ko'zlab moddiy nomoddiy naf olish maqsadida qonunga xilof ravishda foydalanishi",
+    image: "/files/corruption-presentation-assets/slide-02-1.png",
   },
   {
-    icon: BookOpenIcon,
-    title: "Bilim va profilaktika",
+    slide: 3,
+    title: "2016-2025 yillarda ishlab chiqilgan qonun va farmonlar",
     description:
-      "Xodimlar uchun testlar, me'yoriy hujjatlar va asosiy terminlar jamlangan. Maqsad — ogohlikni oshirish va huquqiy savodxonlikni mustahkamlash.",
-    points: [
-      "Savodxonlik testi",
-      "Me'yoriy hujjatlar bazasi",
-      "O'quv materiallari",
-    ],
+      "Yangi O'zbekistonning taraqqiyot strategiyasi 3, 10, 83-maqsadlarida shaxsiy manfaatlar jamiyatga xizmat qilish",
+    image: "/files/corruption-presentation-assets/slide-03-1.png",
+  },
+];
+
+const presidentFeedbackSlides = [
+  {
+    slide: 1,
+    title: "Prezident Farmoni",
+    description:
+      "O'zbekiston Respublikasi Prezidentining 26.12.2025 yildag 'Davlat xaridlari tizimida raqobat muhiti va shaffoflikni ta'minlash bo'yicha navbatdagi chora-tadbirlar to'g'risida' gi PF-259-son FARMONI, 2026 yil, Tashkent sh.",
+    image: "/files/president_feedbacks-assets/slide-01-rId3.png",
+  },
+  {
+    slide: 2,
+    title: "Davlat va jamiyatning shaffof ishlashi",
+    description:
+      "Davlat xaridlari tizimida raqobat muhiti va shaffoflikni ta'minlash",
+    image: "/files/president_feedbacks-assets/slide-02-rId3.png",
+  },
+  {
+    slide: 3,
+    title: "Elektron davlat xizmatlari",
+    description: "Qonunchilikni yanada takomillash va shaffoflikni oshirish",
+    image: "/files/president_feedbacks-assets/slide-03-rId2.png",
   },
 ];
 
@@ -107,21 +280,32 @@ export default function Home() {
   const audioRef = useRef(null);
   const videoRef = useRef(null);
   const gestureHandlerRef = useRef(null);
+  const containerRef = useRef(null);
+
   const [stage, setStage] = useState("loading");
   const [progress, setProgress] = useState(0);
-  const [activeSlide, setActiveSlide] = useState(0);
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const [isIntroClosing, setIsIntroClosing] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [currentDisplayMode, setCurrentDisplayMode] = useState(0); // 0=stats, 1=insights, 2=corruption, 3=president
+  const [currentInsightIndex, setCurrentInsightIndex] = useState(0);
+  const [currentCorruptionSlide, setCurrentCorruptionSlide] = useState(0);
+  const [currentPresidentSlide, setCurrentPresidentSlide] = useState(0);
+  const [currentStatIndex, setCurrentStatIndex] = useState(0);
 
   useEffect(() => {
-    // If hymn was already played, don't play it again
+    if (typeof document !== "undefined") {
+      const styleEl = document.createElement("style");
+      styleEl.textContent = animationStyles;
+      document.head.appendChild(styleEl);
+    }
+  }, []);
+
+  useEffect(() => {
     if (sessionStorage.getItem("hymnPlayed")) {
       queueMicrotask(() => {
         setIsIntroVisible(false);
         setStage("done");
-        // Only show video if it hasn't been played yet AND we're coming back to the page
-        // (not on initial load when hymn just finished)
         if (!sessionStorage.getItem("videoPlayed")) {
           setIsVideoPlaying(true);
         }
@@ -137,7 +321,6 @@ export default function Home() {
       sessionStorage.setItem("hymnPlayed", "true");
       setProgress(100);
       setStage("done");
-      // Auto-play video only on first load after hymn finishes
       setIsVideoPlaying(true);
     };
 
@@ -145,9 +328,22 @@ export default function Home() {
       if (!audio.duration || Number.isNaN(audio.duration)) {
         return;
       }
-      setProgress(
-        Math.min(100, Math.round((audio.currentTime / audio.duration) * 100)),
+      const currentProgress = Math.min(
+        100,
+        Math.round((audio.currentTime / audio.duration) * 100),
       );
+      setProgress(currentProgress);
+
+      // Trigger section animations at specific times during hymn
+      if (currentProgress > 25) {
+        setVisibleSections((prev) => ({ ...prev, stats: true }));
+      }
+      if (currentProgress > 50) {
+        setVisibleSections((prev) => ({ ...prev, insights: true }));
+      }
+      if (currentProgress > 75) {
+        setVisibleSections((prev) => ({ ...prev, reforms: true }));
+      }
     };
 
     const bindGestureFallback = () => {
@@ -190,38 +386,18 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % infoSlides.length);
-    }, 5000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
-    if (stage !== "done" || !isIntroVisible) {
-      return;
-    }
-
-    queueMicrotask(() => setIsIntroClosing(true));
-
-    const timeoutId = setTimeout(() => {
-      setIsIntroVisible(false);
-      setIsIntroClosing(false);
-    }, 420);
-
-    return () => clearTimeout(timeoutId);
-  }, [stage, isIntroVisible]);
-
   const handleSkip = () => {
+    setIsIntroClosing(true);
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current = null;
     }
     sessionStorage.setItem("hymnPlayed", "true");
     setStage("done");
-    // Auto-play video when skipping hymn
-    setIsVideoPlaying(true);
+    setTimeout(() => {
+      setIsIntroVisible(false);
+      setIsVideoPlaying(true);
+    }, 400);
   };
 
   const handleVideoEnd = () => {
@@ -233,23 +409,88 @@ export default function Home() {
     setIsVideoPlaying(false);
   };
 
-  const currentSlide = infoSlides[activeSlide];
-  const CurrentSlideIcon = currentSlide.icon;
-  const handlePrevSlide = () => {
-    setActiveSlide(
-      (prev) => (prev - 1 + infoSlides.length) % infoSlides.length,
+  const handlePrevInsight = () => {
+    setCurrentInsightIndex(
+      (prev) =>
+        (prev - 1 + presidentInsights.length) % presidentInsights.length,
     );
   };
-  const handleNextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % infoSlides.length);
+
+  const handleNextInsight = () => {
+    setCurrentInsightIndex((prev) => (prev + 1) % presidentInsights.length);
   };
+
+  const isWordFile = (href = "") => /\.docx?$/i.test(href);
+  const isPdfFile = (href = "") => /\.pdf$/i.test(href);
+
+  const getAbsoluteFileUrl = (href = "") => {
+    if (typeof window === "undefined") return href;
+    return new URL(href, window.location.origin).toString();
+  };
+
+  const handleMenuFileOpen = (event, item) => {
+    if (!item?.href || item.kind !== "file") return;
+
+    if (isWordFile(item.href)) {
+      event.preventDefault();
+      const absoluteUrl = getAbsoluteFileUrl(item.href);
+
+      try {
+        window.open(`ms-word:ofe|u|${absoluteUrl}`, "_self");
+      } catch {
+        window.open(item.href, "_blank", "noopener,noreferrer");
+      }
+      return;
+    }
+
+    if (isPdfFile(item.href)) {
+      event.preventDefault();
+      window.open(item.href, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentCorruptionSlide(
+        (prev) => (prev + 1) % corruptionPresentationSlides.length,
+      );
+    }, 6000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentPresidentSlide(
+        (prev) => (prev + 1) % presidentFeedbackSlides.length,
+      );
+    }, 6000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Master auto-advance timer: cycle through display modes every 10 seconds
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDisplayMode((prev) => (prev + 1) % 4);
+      // Also rotate through sub-carousels
+      setCurrentInsightIndex((prev) => (prev + 1) % presidentInsights.length);
+      setCurrentStatIndex((prev) => (prev + 1) % corruptionStats.length);
+    }, 10000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div
-      className={`${geistSans.className} min-h-screen bg-slate-100 text-[#0f2c59]`}
+      ref={containerRef}
+      className={`${geistSans.className} h-screen w-screen bg-linear-to-b from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden flex flex-col`}
     >
+      <style>{animationStyles}</style>
+
+      {/* Video player overlay */}
       {isVideoPlaying && (
-        <div className="fixed left-0 right-0 top-0 bottom-0 z-50 flex flex-col items-center justify-center bg-black w-full h-full">
+        <div className="fixed left-0 right-0 top-0 bottom-0 z-50 flex flex-col items-center justify-center bg-linear-to-b from-slate-900/95 via-blue-900/95 to-slate-900/95 w-full h-full backdrop-blur-md">
           <video
             ref={videoRef}
             className="w-full h-full object-cover"
@@ -262,7 +503,7 @@ export default function Home() {
           </video>
           <button
             onClick={handleBackButton}
-            className="absolute top-4 left-4 z-60 flex items-center gap-2 bg-white/90 hover:bg-white text-slate-900 px-4 py-2 rounded-lg font-semibold shadow-lg transition"
+            className="absolute top-4 left-4 z-60 flex items-center gap-2 bg-linear-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-4 py-2 rounded-lg font-semibold shadow-lg transition border border-blue-300/30"
           >
             <ChevronLeftIcon className="h-5 w-5" />
             Ortga
@@ -270,148 +511,217 @@ export default function Home() {
         </div>
       )}
 
-      <main className="mx-auto flex min-h-screen w-full max-w-330 flex-col gap-5 px-5 py-6">
-        <Card className="border-sky-100 bg-linear-to-b from-white to-sky-50/70 shadow-md">
-          <CardHeader className="items-center pb-4 text-center">
-            <CardTitle className="text-balance bg-linear-to-r from-blue-700 to-blue-500 bg-clip-text text-3xl font-black leading-tight tracking-tight text-transparent md:text-5xl">
-              Korrupsiyaga qarshi kurashish bo&apos;yicha
-              <br />
-              “Issiqlik Elektr Stansiyalari AJ” platformasi
-            </CardTitle>
-            <CardDescription className="text-sm font-medium text-sky-800 md:text-base">
-              Ochiq, xavfsiz va zamonaviy axborot maydoni
-            </CardDescription>
-          </CardHeader>
-        </Card>
+      {/* Main content - Always fits in viewport */}
+      <div className="flex-1 flex flex-col relative">
+        {/* Top: Larger Hero Section */}
+        <div className="flex-none h-52 relative flex items-center justify-center px-4">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-4 right-8 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div
+              className="absolute -bottom-4 left-8 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
+              style={{ animationDelay: "2s" }}
+            ></div>
+          </div>
 
-        <section className="grid flex-1 gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <Card className="border-sky-100 bg-linear-to-br from-white to-sky-50/80 shadow-md">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-3 text-2xl text-[#0f2c59] md:text-3xl">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-700">
-                  <CurrentSlideIcon className="h-5 w-5" />
-                </span>
-                {currentSlide.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-base leading-7 text-[#264f84]">
-                {currentSlide.description}
-              </p>
+          <div className="relative z-10 text-center">
+            <h1 className="font-black text-4xl md:text-5xl bg-linear-to-r from-blue-300 via-white to-blue-200 bg-clip-text text-transparent">
+              Korrupsiyaga qarshi kurashish
+            </h1>
+          </div>
+        </div>
 
-              <div className="grid gap-2.5 md:grid-cols-3">
-                {currentSlide.points.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl bg-linear-to-r from-blue-700 to-blue-500 px-3 py-2.5 text-sm font-semibold leading-snug text-white shadow-md"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between gap-3 border-t border-sky-100 pt-3">
-                <div className="flex items-center gap-2">
-                  {infoSlides.map((slide, index) => (
-                    <button
-                      key={slide.title}
-                      onClick={() => setActiveSlide(index)}
-                      className={`h-2.5 w-2.5 rounded-full transition ${
-                        activeSlide === index
-                          ? "bg-blue-600"
-                          : "bg-sky-200 hover:bg-sky-300"
-                      }`}
-                      aria-label={`${index + 1}-slayd`}
-                    />
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <Button
-                    onClick={handlePrevSlide}
-                    className="h-8 border border-sky-200 bg-white px-3 text-slate-700 hover:bg-sky-50"
-                  >
-                    <ChevronLeftIcon className="h-4 w-4" />
-                    Oldingi
-                  </Button>
-                  <Button
-                    onClick={handleNextSlide}
-                    className="h-8 border border-sky-200 bg-white px-3 text-slate-700 hover:bg-sky-50"
-                  >
-                    Keyingi
-                    <ChevronRightIcon className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-sky-100 bg-linear-to-b from-white to-sky-50/60 shadow-md">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-2xl text-blue-700">
-                Bo&apos;limlar
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="grid gap-2.5">
-                {menuItems.map((item) => (
-                  <li key={item.label}>
-                    {item.href ? (
-                      (() => {
-                        const isExternal = item.kind === "external";
-
-                        return (
-                          <a
-                            href={item.href}
-                            target={isExternal ? "_blank" : undefined}
-                            rel={isExternal ? "noopener noreferrer" : undefined}
-                            className="group flex items-center justify-between gap-3 rounded-xl border border-sky-100 bg-linear-to-b from-white to-sky-50/80 px-3 py-2.5 text-[1rem] font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-md"
-                          >
-                            <span>{item.label}</span>
-                            <span
-                              aria-hidden="true"
-                              className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-[11px] font-bold text-white ${
-                                item.kind === "file"
-                                  ? "bg-blue-600"
-                                  : item.kind === "internal"
-                                    ? "bg-indigo-600"
-                                    : "bg-emerald-600"
-                              }`}
-                            >
-                              {item.kind === "file" ? (
-                                <FileIcon className="h-3.5 w-3.5" />
-                              ) : item.kind === "internal" ? (
-                                <ChevronRightIcon className="h-3.5 w-3.5" />
-                              ) : (
-                                <ExternalLinkIcon className="h-3.5 w-3.5" />
-                              )}
-                            </span>
-                          </a>
-                        );
-                      })()
-                    ) : (
-                      <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[1rem] font-semibold text-slate-800">
-                        <span>{item.label}</span>
-                        <Badge className="border-slate-200 bg-slate-100 text-slate-500">
-                          Tez kunda
-                        </Badge>
+        {/* Middle: Auto-rotating carousel section - 60% of remaining space */}
+        <div className="flex-1 flex items-center justify-center px-4 py-4 relative overflow-hidden">
+          {currentDisplayMode === 0 && (
+            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+              <div className="w-full max-w-6xl">
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
+                  Korrupsiyaga qarshi kurashda asosiy raqamlar
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {corruptionStats.map((stat, index) => {
+                    const IconComponent = stat.icon;
+                    const gradients = [
+                      "bg-linear-to-br from-blue-600 to-cyan-500",
+                      "bg-linear-to-br from-purple-600 to-pink-500",
+                      "bg-linear-to-br from-emerald-600 to-teal-500",
+                      "bg-linear-to-br from-orange-600 to-rose-500",
+                    ];
+                    return (
+                      <div
+                        key={index}
+                        className={`${gradients[index]} rounded-3xl p-8 text-center hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-white/20 backdrop-blur-sm`}
+                      >
+                        <div className="flex justify-center mb-6">
+                          <IconComponent
+                            className="w-20 h-20 text-white drop-shadow-lg"
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <div className="text-5xl font-bold text-white mb-3 drop-shadow-md">
+                          {stat.stat}
+                        </div>
+                        <div className="text-xl font-bold text-white mb-3 drop-shadow-sm">
+                          {stat.label}
+                        </div>
+                        <p className="text-sm text-white/90">
+                          {stat.description}
+                        </p>
                       </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        </section>
-      </main>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
 
+          {currentDisplayMode === 1 && (
+            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+              <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
+                <div className="flex items-center justify-center">
+                  <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                    {presidentInsights[currentInsightIndex].image && (
+                      <Image
+                        src={presidentInsights[currentInsightIndex].image}
+                        alt="President"
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <div className="glass-effect-dark rounded-3xl p-8 backdrop-blur-xl">
+                    <blockquote className="relative">
+                      <p className="text-xl md:text-2xl leading-relaxed mb-6 italic font-light text-blue-100">
+                        &quot;{presidentInsights[currentInsightIndex].quote}
+                        &quot;
+                      </p>
+                      <div className="text-right">
+                        <div className="font-bold text-lg text-blue-300">
+                          {presidentInsights[currentInsightIndex].source}
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                  <div className="flex justify-center gap-2 mt-6">
+                    {presidentInsights.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`rounded-full transition ${currentInsightIndex === index ? "bg-blue-400 w-8 h-4" : "bg-white/30 w-4 h-4"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {currentDisplayMode === 2 && (
+            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+              <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
+                <div className="flex items-center justify-center">
+                  <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                    {corruptionPresentationSlides[currentCorruptionSlide]
+                      .image && (
+                      <Image
+                        src={
+                          corruptionPresentationSlides[currentCorruptionSlide]
+                            .image
+                        }
+                        alt="Slide"
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                    Korrupsiya Taqdimoti
+                  </h2>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-blue-300">
+                    {corruptionPresentationSlides[currentCorruptionSlide].title}
+                  </h3>
+                  <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6">
+                    {
+                      corruptionPresentationSlides[currentCorruptionSlide]
+                        .description
+                    }
+                  </p>
+                  <div className="flex justify-start gap-2 mt-4">
+                    {corruptionPresentationSlides.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`rounded-full transition ${currentCorruptionSlide === index ? "bg-blue-400 w-6 h-4" : "bg-white/30 w-4 h-4"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {currentDisplayMode === 3 && (
+            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+              <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
+                <div className="flex items-center justify-center">
+                  <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                    {presidentFeedbackSlides[currentPresidentSlide].image && (
+                      <Image
+                        src={
+                          presidentFeedbackSlides[currentPresidentSlide].image
+                        }
+                        alt="Slide"
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                    Prezidentning Qarorları
+                  </h2>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-blue-300">
+                    {presidentFeedbackSlides[currentPresidentSlide].title}
+                  </h3>
+                  <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6">
+                    {presidentFeedbackSlides[currentPresidentSlide].description}
+                  </p>
+                  <div className="flex justify-start gap-2 mt-4">
+                    {presidentFeedbackSlides.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-6 h-4" : "bg-white/30 w-4 h-4"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Bottom: Info bar */}
+        <div className="flex-none h-20 relative flex items-center justify-center px-4 border-t border-white/10 bg-linear-to-r from-blue-900/30 via-transparent to-blue-900/30">
+          <div className="text-center text-sm md:text-base text-white/80 font-medium">
+            <p>
+              &quot;Issiqlik Elektr Stansiyalari AJ&quot; — Shaffoflik, Halollik
+              va Javobgarlikni Kuchaytirish Platformasi
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Hymn Intro Overlay */}
       {isIntroVisible && (
         <div className="pointer-events-none fixed left-0 right-0 top-3 z-50 flex justify-center px-3">
           <div
-            className={`pointer-events-auto relative w-full max-w-330 overflow-hidden rounded-3xl border bg-white/88 px-4 text-slate-900 shadow-[0_18px_45px_rgba(15,44,89,0.18)] backdrop-blur-xl transition-all duration-400 ease-out ${
+            className={`pointer-events-auto relative w-full max-w-330 overflow-hidden rounded-3xl border bg-linear-to-r from-blue-900/40 via-slate-900/40 to-blue-900/40 backdrop-blur-xl px-4 shadow-2xl transition-all duration-400 ease-out ${
               isIntroClosing
                 ? "max-h-0 -translate-y-3 border-transparent py-0 opacity-0"
-                : "max-h-52 translate-y-0 border-white/70 py-3 opacity-100"
+                : "max-h-52 translate-y-0 border-cyan-400/40 py-3 opacity-100"
             }`}
           >
             <div className="flex items-start justify-between gap-4">
@@ -422,20 +732,20 @@ export default function Home() {
                   width={96}
                   height={64}
                   priority
-                  className="h-auto shrink-0 rounded-xl border border-slate-200/80 shadow-sm"
+                  className="h-auto shrink-0 rounded-xl border border-white/30 shadow-sm"
                 />
 
                 <div className="min-w-0 flex-1 pt-0.5">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <h2 className="text-lg font-extrabold leading-tight tracking-tight text-slate-900 md:text-xl">
+                    <h2 className="text-lg font-extrabold leading-tight tracking-tight text-white md:text-xl">
                       O&apos;zbekiston Respublikasi
                     </h2>
-                    <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-emerald-700">
+                    <span className="rounded-full border border-emerald-300/50 bg-emerald-500/20 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-emerald-200 backdrop-blur">
                       Davlat madhiyasi
                     </span>
                   </div>
 
-                  <p className="mt-0.5 text-sm font-medium text-slate-600">
+                  <p className="mt-0.5 text-sm font-medium text-white/70">
                     Davlat madhiyasi ijro etilmoqda
                   </p>
                 </div>
@@ -444,20 +754,20 @@ export default function Home() {
               <div className="shrink-0">
                 <Button
                   onClick={handleSkip}
-                  className="min-h-10 rounded-xl border border-slate-200 bg-slate-900 px-4 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+                  className="min-h-10 rounded-xl border border-cyan-300/40 bg-linear-to-r from-cyan-500/20 to-blue-500/20 px-4 text-sm font-semibold text-white shadow-sm hover:from-cyan-500/30 hover:to-blue-500/30 backdrop-blur transition"
                 >
                   O&apos;tkazib yuborish
                 </Button>
               </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 h-1.5 w-full bg-slate-200">
+            <div className="absolute bottom-0 left-0 h-1.5 w-full bg-white/10">
               <div
                 style={{
                   width: `${progress}%`,
                   height: "100%",
                   background:
-                    "linear-gradient(90deg, #2b7bff, #f6f7f8, #2fa84a)",
+                    "linear-gradient(90deg, #0ea5e9, #06b6d4, #10b981)",
                   transition: "width 180ms linear",
                 }}
               />
