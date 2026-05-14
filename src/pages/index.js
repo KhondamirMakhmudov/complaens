@@ -161,7 +161,7 @@ const presidentInsights = [
   {
     quote:
       "O'zbekiston Respublikasining asosiy maqsadi - shaffoflik, adolatlilik va xalqga xizmat qilishdir. Korrupsiyaga qarshi kurash - bu bizning davlatiy siyosatimizning eng muhim yo'nalishi.",
-    source: "O'zbekiston Respublikasi Vazifalar",
+    source: "O'zbekiston Respublikasi Prezidenti",
     emphasis: "Shaffoflik va adolatlilik",
     image: "/files/president_image.jpg",
   },
@@ -292,6 +292,7 @@ export default function Home() {
   const [currentCorruptionSlide, setCurrentCorruptionSlide] = useState(0);
   const [currentPresidentSlide, setCurrentPresidentSlide] = useState(0);
   const [currentStatIndex, setCurrentStatIndex] = useState(0);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -333,17 +334,6 @@ export default function Home() {
         Math.round((audio.currentTime / audio.duration) * 100),
       );
       setProgress(currentProgress);
-
-      // Trigger section animations at specific times during hymn
-      if (currentProgress > 25) {
-        setVisibleSections((prev) => ({ ...prev, stats: true }));
-      }
-      if (currentProgress > 50) {
-        setVisibleSections((prev) => ({ ...prev, insights: true }));
-      }
-      if (currentProgress > 75) {
-        setVisibleSections((prev) => ({ ...prev, reforms: true }));
-      }
     };
 
     const bindGestureFallback = () => {
@@ -407,6 +397,10 @@ export default function Home() {
 
   const handleBackButton = () => {
     setIsVideoPlaying(false);
+  };
+
+  const handleMenuToggle = () => {
+    setShowMenu(!showMenu);
   };
 
   const handlePrevInsight = () => {
@@ -513,8 +507,56 @@ export default function Home() {
 
       {/* Main content - Always fits in viewport */}
       <div className="flex-1 flex flex-col relative">
+        {/* Header Section with IES Logo and Company Info */}
+        <div className="flex-none bg-linear-to-r from-blue-900/50 to-slate-900/50 backdrop-blur-md border-b border-cyan-400/20 px-6 py-6">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-8">
+            {/* Logo and Company Info */}
+            <div className="flex items-center gap-4 flex-1">
+              <div className="shrink-0">
+                <Image
+                  src="/icons/ies_brand.svg"
+                  alt="Issiqlik Elektr Stansiyalari AJ"
+                  width={80}
+                  height={80}
+                  className="h-16 w-auto"
+                  priority
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-2xl md:text-3xl font-bold text-white">
+                  Issiqlik Elektr Stansiyalari AJ
+                </h1>
+                <p className="text-sm md:text-base text-cyan-200 mt-1">
+                  Shaffoflik, Halollik va Javobgarlikni Kuchaytirish Platformasi
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Action Buttons */}
+            <div className="hidden md:flex items-center gap-3 shrink-0">
+              <Button
+                onClick={() =>
+                  window.open(
+                    "https://docs.google.com/forms/d/e/1FAIpQLScG0ic3AVqEWmb1RyHKENR4_YuzlPcTcpjUmvf-Z46AmLNj7A/viewform",
+                    "_blank",
+                  )
+                }
+                className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-lg"
+              >
+                Murojaat qilish
+              </Button>
+              <Button
+                onClick={handleMenuToggle}
+                className="bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20"
+              >
+                Menyu
+              </Button>
+            </div>
+          </div>
+        </div>
+
         {/* Top: Larger Hero Section */}
-        <div className="flex-none h-52 relative flex items-center justify-center px-4">
+        <div className="flex-none h-48 relative flex items-center justify-center px-4">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-4 right-8 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
             <div
@@ -524,9 +566,12 @@ export default function Home() {
           </div>
 
           <div className="relative z-10 text-center">
-            <h1 className="font-black text-4xl md:text-5xl bg-linear-to-r from-blue-300 via-white to-blue-200 bg-clip-text text-transparent">
+            <h2 className="font-black text-3xl md:text-4xl bg-linear-to-r from-blue-300 via-white to-blue-200 bg-clip-text text-transparent">
               Korrupsiyaga qarshi kurashish
-            </h1>
+            </h2>
+            <p className="text-cyan-200 text-lg mt-2">
+              Halollik va Javobgarlikning Yo&apos;li
+            </p>
           </div>
         </div>
 
