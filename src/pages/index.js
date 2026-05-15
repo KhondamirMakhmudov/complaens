@@ -276,6 +276,43 @@ const presidentFeedbackSlides = [
   },
 ];
 
+const internalDocuments = {
+  title:
+    "“ИССИҚЛИК ЭЛЕКТР СТАНЦИЯЛАРИ” АЖ ДА КОРРУПЦИЯГА ҚАРШИ КУРАШИШ БЎЙИЧА ҚАБУЛ ҚИЛИНГАН ИЧКИ МЕЪЁРИЙ ҲУЖЖАТЛАР",
+  subtitle:
+    "Ушбу сиёсатнинг тамойиллари ва талаблари барча ходимлар учун, уларнинг эгаллаб турган лавозимидан қатъий назар, мажбурий.",
+  items: [
+    "“ИЭС” АЖнинг коррупцияга қарши сиёсати",
+    "Одоб-ахлок кодекси",
+    "Манфаатлар тўқнашувини бошқариш бўйича Низом",
+    "Контрагентларни текширишга оид Йўриқнома",
+    "Коррупциявий хавф-хатарларни аниқлаш ва баҳолаш Услубиёти",
+    "Ходимларнинг коррупциявий хатти-харакатлари ва одоб-ахлок қоидаларини бузиш ҳолатлари устидан хизмат текширувлари ўтказиш бўйича Регламент",
+    "Алоқа каналлари орқали коррупциявий хатти-харакатлар тўғрисида келиб тушган хабарларни қабул қилиш ва кўриб чиқиш Регламенти",
+    "Ходимларнинг этика ва коррупцияга қарши курашиш соҳасида ўқитишни ташкил қилиш бўйича Йўриқнома",
+    "Жамиятга ишга қабул қилинаётган номзодларни текшириш бўйича Йўриқнома",
+    "Коррупциявий хавф-хатарларни аниқлаш ва баҳолаш Услубиёти",
+  ],
+};
+
+const corruptionLawDefinitions = {
+  image: "/files/corruption_book.jpg",
+  sections: [
+    {
+      title: "Коррупция",
+      text: "шахснинг ўз мансаб ёки хизмат мавқеидан шахсий манфаатларини ёхуд ўзга шахсларнинг манфаатларини кўзлаб моддий ёки номоддий наф олиш мақсадида қонунга хилоф равишда фойдаланиши, худди шунингдек бундай нафни қонунга хилоф равишда тақдим этиш.",
+    },
+    {
+      title: "Коррупцияга оид ҳуқуқбузарлик",
+      text: "коррупция аломатларига эга бўлган, содир этилганлиги учун қонунчиликда жавобгарлик назарда тутилган қилмиш.",
+    },
+    {
+      title: "Манфаатлар тўқнашуви",
+      text: "шахсий (бевосита ёки билвосита) манфаатдорлик шахснинг мансаб ёки хизмат мажбуриятларини лозим даражада бажаришига таъсир кўрсатаётган ёхуд таъсир кўрсатиши мумкин бўлган ҳамда шахсий манфаатдорлик билан фуқароларнинг, ташкилотларнинг, жамиятнинг ёки давлатнинг ҳуқуқлари ва қонуний манфаатлари ўртасида қарама-қаршилик юзага келаётган ёки юзага келиши мумкин бўлган вазият.",
+    },
+  ],
+};
+
 export default function Home() {
   const audioRef = useRef(null);
   const videoRef = useRef(null);
@@ -287,7 +324,7 @@ export default function Home() {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const [isIntroClosing, setIsIntroClosing] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [currentDisplayMode, setCurrentDisplayMode] = useState(0); // 0=stats, 1=insights, 2=corruption, 3=president
+  const [currentDisplayMode, setCurrentDisplayMode] = useState(4); // 0=stats, 1=insights, 2=corruption, 3=president, 4=internal-docs, 5=law-definitions
   const [currentInsightIndex, setCurrentInsightIndex] = useState(0);
   const [currentCorruptionSlide, setCurrentCorruptionSlide] = useState(0);
   const [currentPresidentSlide, setCurrentPresidentSlide] = useState(0);
@@ -466,7 +503,7 @@ export default function Home() {
   // Master auto-advance timer: cycle through display modes every 10 seconds
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentDisplayMode((prev) => (prev + 1) % 4);
+      setCurrentDisplayMode((prev) => (prev + 1) % 6);
       // Also rotate through sub-carousels
       setCurrentInsightIndex((prev) => (prev + 1) % presidentInsights.length);
       setCurrentStatIndex((prev) => (prev + 1) % corruptionStats.length);
@@ -535,6 +572,18 @@ export default function Home() {
             {/* Quick Action Buttons */}
             <div className="hidden md:flex items-center gap-3 shrink-0">
               <Button
+                onClick={() => setCurrentDisplayMode(4)}
+                className="bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20"
+              >
+                Ichki hujjatlar
+              </Button>
+              <Button
+                onClick={() => setCurrentDisplayMode(5)}
+                className="bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20"
+              >
+                Qonun tushunchalari
+              </Button>
+              <Button
                 onClick={() =>
                   window.open(
                     "https://docs.google.com/forms/d/e/1FAIpQLScG0ic3AVqEWmb1RyHKENR4_YuzlPcTcpjUmvf-Z46AmLNj7A/viewform",
@@ -556,7 +605,9 @@ export default function Home() {
         </div>
 
         {/* Top: Larger Hero Section */}
-        <div className="flex-none h-48 relative flex items-center justify-center px-4">
+        <div
+          className={`flex-none relative flex items-center justify-center px-4 ${currentDisplayMode === 5 ? "h-22" : "h-48"}`}
+        >
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-4 right-8 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
             <div
@@ -566,10 +617,14 @@ export default function Home() {
           </div>
 
           <div className="relative z-10 text-center">
-            <h2 className="font-black text-3xl md:text-4xl bg-linear-to-r from-blue-300 via-white to-blue-200 bg-clip-text text-transparent">
+            <h2
+              className={`font-black bg-linear-to-r from-blue-300 via-white to-blue-200 bg-clip-text text-transparent ${currentDisplayMode === 5 ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl"}`}
+            >
               Korrupsiyaga qarshi kurashish
             </h2>
-            <p className="text-cyan-200 text-lg mt-2">
+            <p
+              className={`text-cyan-200 ${currentDisplayMode === 5 ? "mt-1 text-sm md:text-base" : "mt-2 text-lg"}`}
+            >
               Halollik va Javobgarlikning Yo&apos;li
             </p>
           </div>
@@ -746,11 +801,119 @@ export default function Home() {
               </div>
             </div>
           )}
+
+          {currentDisplayMode === 4 && (
+            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+              <section className="w-full max-w-7xl overflow-hidden rounded-3xl border border-cyan-300/25 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 text-slate-100 shadow-2xl">
+                <div className="border-b border-cyan-300/20 bg-linear-to-r from-slate-950 via-slate-900 to-black px-6 py-4 md:px-8">
+                  <h2 className="text-balance text-2xl font-black leading-tight text-white md:text-4xl">
+                    {internalDocuments.title}
+                  </h2>
+                </div>
+
+                <div className="bg-[linear-gradient(130deg,rgba(2,8,23,0.6)_0%,rgba(15,23,42,0.55)_45%,rgba(30,64,175,0.25)_100%)] px-5 py-4 md:px-8 md:py-6">
+                  <p className="mb-4 rounded-lg border border-cyan-300/30 bg-white/8 px-3 py-2 text-base font-semibold leading-7 text-cyan-100 md:text-2xl md:leading-10">
+                    {internalDocuments.subtitle}
+                  </p>
+
+                  <div className="grid gap-4 md:grid-cols-2 md:gap-6">
+                    {[
+                      internalDocuments.items.slice(
+                        0,
+                        Math.ceil(internalDocuments.items.length / 2),
+                      ),
+                      internalDocuments.items.slice(
+                        Math.ceil(internalDocuments.items.length / 2),
+                      ),
+                    ].map((columnItems, columnIndex) => (
+                      <ul
+                        key={`docs-column-${columnIndex}`}
+                        className="space-y-3"
+                      >
+                        {columnItems.map((item, itemIndex) => {
+                          const iconPool = [
+                            ShieldIcon,
+                            BookOpenIcon,
+                            FileIcon,
+                            MegaphoneIcon,
+                          ];
+                          const IconComponent =
+                            iconPool[
+                              (itemIndex + columnIndex * 2) % iconPool.length
+                            ];
+
+                          return (
+                            <li
+                              key={`doc-item-${columnIndex}-${itemIndex}`}
+                              className="flex items-start gap-3"
+                            >
+                              <span className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-blue-600/90 text-white md:h-14 md:w-14">
+                                <IconComponent className="h-5 w-5 md:h-7 md:w-7" />
+                              </span>
+                              <p className="text-base leading-7 text-slate-100 md:text-2xl md:leading-10">
+                                {item}
+                              </p>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+          )}
+
+          {currentDisplayMode === 5 && (
+            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+              <section className="w-full max-w-7xl overflow-hidden rounded-3xl border border-slate-200/20 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 shadow-2xl">
+                <div className="grid h-full gap-3 p-3 md:grid-cols-[26%_74%] md:p-4">
+                  <div className="relative min-h-64 overflow-hidden rounded-2xl border border-cyan-300/25 bg-slate-900/60">
+                    <Image
+                      src={corruptionLawDefinitions.image}
+                      alt="Коррупцияга қарши курашиш тўғрисидаги қонун"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div className="relative rounded-2xl border-x-4 border-orange-500/90 px-3 py-2 md:px-4 md:py-3">
+                    <div className="space-y-2 md:space-y-3">
+                      {corruptionLawDefinitions.sections.map((section, idx) => (
+                        <article
+                          key={`law-def-${idx}`}
+                          className="grid gap-2 md:grid-cols-[52px_1fr] md:gap-2"
+                        >
+                          <div className="hidden items-start justify-center md:flex">
+                            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-white/8 text-white md:h-11 md:w-11">
+                              <FileIcon className="h-5 w-5 md:h-6 md:w-6" />
+                            </span>
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-black leading-tight text-orange-500 md:text-2xl">
+                              {section.title}
+                            </h3>
+                            <p className="mt-1 text-sm leading-6 text-slate-100 md:text-lg md:leading-7">
+                              {section.text}
+                            </p>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          )}
         </div>
 
         {/* Bottom: Info bar */}
-        <div className="flex-none h-20 relative flex items-center justify-center px-4 border-t border-white/10 bg-linear-to-r from-blue-900/30 via-transparent to-blue-900/30">
-          <div className="text-center text-sm md:text-base text-white/80 font-medium">
+        <div
+          className={`flex-none relative flex items-center justify-center px-4 border-t border-white/10 bg-linear-to-r from-blue-900/30 via-transparent to-blue-900/30 ${currentDisplayMode === 5 ? "h-14" : "h-20"}`}
+        >
+          <div
+            className={`text-center text-white/80 font-medium ${currentDisplayMode === 5 ? "text-xs md:text-sm" : "text-sm md:text-base"}`}
+          >
             <p>
               &quot;Issiqlik Elektr Stansiyalari AJ&quot; — Shaffoflik, Halollik
               va Javobgarlikni Kuchaytirish Platformasi

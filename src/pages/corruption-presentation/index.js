@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { Geist } from "next/font/google";
 import { useRouter } from "next/router";
-import { ChevronLeftIcon } from "@/components/ui/site-icons";
+import {
+  BookOpenIcon,
+  ChevronLeftIcon,
+  FileIcon,
+  MegaphoneIcon,
+  ShieldIcon,
+} from "@/components/ui/site-icons";
 import slides from "./content.json";
 
 const geistSans = Geist({
@@ -271,10 +277,11 @@ export default function CorruptionPresentationPage() {
           <div className="relative overflow-hidden rounded-xl bg-linear-to-r from-blue-600 to-blue-700 px-6 py-6 text-white">
             <div className="relative z-10">
               <p className="text-sm font-semibold uppercase tracking-wider text-blue-100">
-                Bog'lanish uchun
+                Bog&apos;lanish uchun
               </p>
               <p className="mt-2 text-lg font-bold">
-                Barcha yo'llar ochiq. Biz siz bilan bog'lanishni kutib turamiz!
+                Barcha yo&apos;llar ochiq. Biz siz bilan bog&apos;lanishni kutib
+                turamiz!
               </p>
             </div>
           </div>
@@ -282,6 +289,62 @@ export default function CorruptionPresentationPage() {
       </section>
     );
   };
+
+  const renderInternalDocsSlide = (slide) => {
+    const items = (slide.texts || []).filter(Boolean);
+    const midpoint = Math.ceil(items.length / 2);
+    const leftItems = items.slice(0, midpoint);
+    const rightItems = items.slice(midpoint);
+    const iconSet = [ShieldIcon, BookOpenIcon, FileIcon, MegaphoneIcon];
+
+    const renderItem = (item, itemIndex, offset) => {
+      const Icon = iconSet[(itemIndex + offset) % iconSet.length];
+      return (
+        <li
+          key={`${slide.slide}-doc-${offset}-${itemIndex}`}
+          className="flex items-start gap-4"
+        >
+          <span className="mt-0.5 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-700 text-white shadow-sm md:h-14 md:w-14">
+            <Icon className="h-6 w-6 md:h-7 md:w-7" />
+          </span>
+          <p className="text-lg leading-8 text-blue-900 md:text-[33px] md:leading-[1.35]">
+            {item}
+          </p>
+        </li>
+      );
+    };
+
+    return (
+      <section
+        key={slide.slide}
+        className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_10px_30px_rgba(2,32,71,0.07)]"
+      >
+        <div className="bg-linear-to-r from-slate-900 via-slate-900 to-black px-6 py-6 md:px-10 md:py-7">
+          <h2 className="text-balance text-2xl font-black leading-tight text-white md:text-4xl">
+            {slide.title}
+          </h2>
+        </div>
+
+        <div className="bg-[linear-gradient(130deg,#f8fafc_0%,#eef2f7_45%,#f6f7fb_100%)] px-6 py-8 md:px-10 md:py-10">
+          {slide.note && (
+            <p className="mb-7 rounded-xl border border-blue-100 bg-white/80 px-4 py-3 text-base font-semibold leading-7 text-blue-900 md:text-lg">
+              {slide.note}
+            </p>
+          )}
+
+          <div className="grid gap-6 md:grid-cols-2 md:gap-10">
+            <ul className="space-y-5">
+              {leftItems.map((item, idx) => renderItem(item, idx, 0))}
+            </ul>
+            <ul className="space-y-5">
+              {rightItems.map((item, idx) => renderItem(item, idx, 2))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    );
+  };
+
   return (
     <div
       className={`${geistSans.className} min-h-screen bg-linear-to-b from-slate-100 via-sky-50/50 to-slate-100 text-slate-900`}
@@ -362,6 +425,11 @@ export default function CorruptionPresentationPage() {
             // Contact/Info slide layout (slide 7)
             if (slide.slide === 7) {
               return renderContactSlide(slide);
+            }
+
+            // Internal documents slide layout (slide 8)
+            if (slide.slide === 8) {
+              return renderInternalDocsSlide(slide);
             }
 
             // Content slide layout with emblem, orange bar, and structured sections
