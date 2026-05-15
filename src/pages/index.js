@@ -268,29 +268,6 @@ const menuItems = [
   },
 ];
 
-const corruptionPresentationSlides = [
-  {
-    slide: 1,
-    title: "Korrupsiyaga qarshi kurashish va uning huquqiy asoslari",
-    description: "Tashkent-2025 y., 'Issiqlik elektr stansiyalari' AJ",
-    image: "/files/corruption-presentation-assets/slide-01-1.png",
-  },
-  {
-    slide: 2,
-    title: "O'zbekiston Respublikasining qonuni",
-    description:
-      "ORQ-419-son qonuni 3-moddasi: Korrupsiya - shaxsning o'z mansab yoki xizmat mavqeidan shaxsiy manfaatlarini yohud o'zga shaxslarning ko'zlab moddiy nomoddiy naf olish maqsadida qonunga xilof ravishda foydalanishi",
-    image: "/files/corruption-presentation-assets/slide-02-1.png",
-  },
-  {
-    slide: 3,
-    title: "2016-2025 yillarda ishlab chiqilgan qonun va farmonlar",
-    description:
-      "Yangi O'zbekistonning taraqqiyot strategiyasi 3, 10, 83-maqsadlarida shaxsiy manfaatlar jamiyatga xizmat qilish",
-    image: "/files/corruption-presentation-assets/slide-03-1.png",
-  },
-];
-
 const presidentFeedbackSlides = [
   {
     slide: 1,
@@ -396,7 +373,6 @@ export default function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [currentDisplayMode, setCurrentDisplayMode] = useState(4); // 0=stats, 1=insights, 2=corruption, 3=president, 4=internal-docs, 5=law-definitions, 6=anti-corruption-day
   const [currentInsightIndex, setCurrentInsightIndex] = useState(0);
-  const [currentCorruptionSlide, setCurrentCorruptionSlide] = useState(0);
   const [currentPresidentSlide, setCurrentPresidentSlide] = useState(0);
   const [currentAntiCorruptionSlide, setCurrentAntiCorruptionSlide] =
     useState(0);
@@ -551,16 +527,6 @@ export default function Home() {
       window.open(item.href, "_blank", "noopener,noreferrer");
     }
   };
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentCorruptionSlide(
-        (prev) => (prev + 1) % corruptionPresentationSlides.length,
-      );
-    }, 6000);
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -757,12 +723,10 @@ export default function Home() {
               <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
                 <div className="flex items-center justify-center">
                   <div className="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
-                    {corruptionPresentationSlides[currentCorruptionSlide]
-                      .image && (
+                    {presidentFeedbackSlides[currentPresidentSlide].image && (
                       <Image
                         src={
-                          corruptionPresentationSlides[currentCorruptionSlide]
-                            .image
+                          presidentFeedbackSlides[currentPresidentSlide].image
                         }
                         alt="Slide"
                         fill
@@ -773,22 +737,19 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col justify-center">
                   <h2 className="text-2xl md:text-3xl font-bold mb-2">
-                    Korrupsiya Taqdimoti
+                    Prezidentning Qarorları
                   </h2>
                   <h3 className="text-lg md:text-xl font-bold mb-3 text-blue-300">
-                    {corruptionPresentationSlides[currentCorruptionSlide].title}
+                    {presidentFeedbackSlides[currentPresidentSlide].title}
                   </h3>
                   <p className="text-sm md:text-base text-white/80 leading-tight mb-3">
-                    {
-                      corruptionPresentationSlides[currentCorruptionSlide]
-                        .description
-                    }
+                    {presidentFeedbackSlides[currentPresidentSlide].description}
                   </p>
                   <div className="flex justify-start gap-2 mt-2">
-                    {corruptionPresentationSlides.map((_, index) => (
+                    {presidentFeedbackSlides.map((_, index) => (
                       <div
                         key={index}
-                        className={`rounded-full transition ${currentCorruptionSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
+                        className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
                       />
                     ))}
                   </div>
