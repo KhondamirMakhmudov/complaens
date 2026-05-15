@@ -314,22 +314,54 @@ const presidentFeedbackSlides = [
   },
 ];
 
+const antiCorruptionDaySlides = [
+  {
+    slide: 1,
+    title: "9-dekabr: Xalqaro korrupsiyaga qarshi kurashish kuni",
+    description:
+      "Har yili 9-dekabr kuni butun dunyo bo'ylab Xalqaro korrupsiyaga qarshi kurashish kuni nishonlanadi. Bu kun korrupsiyaning jamiyatga yetkazadigan zarariga qarshi kurashish va aholining xabardorligini oshirishga bag'ishlangan.",
+    image: "/files/corruption-1.png",
+    timeline: [
+      {
+        number: 1,
+        title: "BMT Bosh Assambleyasining qarori",
+        description:
+          "2003-yilda Birlashgan Millatlar Tashkiloti Bosh Assambleyasi 9-dekabrni Xalqaro korrupsiyaga qarshi kurashish kuni deb e'lon qildi.",
+      },
+      {
+        number: 2,
+        title: "Konvensiyaning qabul qilinishi",
+        description:
+          "Bu kun BMTning korrupsiyaga qarshi konvensiyasi qabul qilinganligini xalqaro miqyosda nishonlashga bag'ishlangan.",
+      },
+      {
+        number: 3,
+        title: "Asosiy maqsadlar",
+        description:
+          "Korrupsiyaga qarshi kurashda xalqaro hamkorlikni kuchaytrish va jamoatchilkini ushbu illatning salbiy oqibatlari haqida xabardor qilish.",
+      },
+    ],
+    footer:
+      "Bu sana barcha davlatlarni korrupsiyaga qarshi kurashishda birlashishga va shaffolikni ta'minlashga chaqiradi.",
+  },
+];
+
 const internalDocuments = {
   title:
-    "“ИССИҚЛИК ЭЛЕКТР СТАНЦИЯЛАРИ” АЖ ДА КОРРУПЦИЯГА ҚАРШИ КУРАШИШ БЎЙИЧА ҚАБУЛ ҚИЛИНГАН ИЧКИ МЕЪЁРИЙ ҲУЖЖАТЛАР",
+    '"ISSIQLIK ELEKTR STANTSIYALARI" AJ DA KORRUPSIYAGA QARSHI KURASHISH BOYICHA QABUL QILINGAN ICHKI MEYORIY HUJJATLAR',
   subtitle:
-    "Ушбу сиёсатнинг тамойиллари ва талаблари барча ходимлар учун, уларнинг эгаллаб турган лавозимидан қатъий назар, мажбурий.",
+    "Ushbu siyosatning tamoyillari va talablari barcha hodimlar uchun, ularning egallad turgan lavozimidan qat'iy nazar, majburiy.",
   items: [
-    "“ИЭС” АЖнинг коррупцияга қарши сиёсати",
-    "Одоб-ахлок кодекси",
-    "Манфаатлар тўқнашувини бошқариш бўйича Низом",
-    "Контрагентларни текширишга оид Йўриқнома",
-    "Коррупциявий хавф-хатарларни аниқлаш ва баҳолаш Услубиёти",
-    "Ходимларнинг коррупциявий хатти-харакатлари ва одоб-ахлок қоидаларини бузиш ҳолатлари устидан хизмат текширувлари ўтказиш бўйича Регламент",
-    "Алоқа каналлари орқали коррупциявий хатти-харакатлар тўғрисида келиб тушган хабарларни қабул қилиш ва кўриб чиқиш Регламенти",
-    "Ходимларнинг этика ва коррупцияга қарши курашиш соҳасида ўқитишни ташкил қилиш бўйича Йўриқнома",
-    "Жамиятга ишга қабул қилинаётган номзодларни текшириш бўйича Йўриқнома",
-    "Коррупциявий хавф-хатарларни аниқлаш ва баҳолаш Услубиёти",
+    '"IES" AJning korrupsiyaga qarshi siyosati',
+    "Odob-ahlok kodeksi",
+    "Manfaatlar toqnashuvini boshqarish boyicha Nizom",
+    "Kontragentlarni tekshirishga oid Yoriqnoma",
+    "Korrupsiyaviy havo-hatalarni aniqlash va baholash Usuluiyoti",
+    "Hodimlarning korrupsiyaviy hatti-harakatlari va odob-ahlok qoidalarini buzish holatlari ustidan xizmat tekshiruvalari otkizish boyicha Reglament",
+    "Aloqa kanallari orqali korrupsiyaviy hatti-harakatlari tughrisida kelib tushgan habarlarni qabul qilish va kurib chiqish Reglamenti",
+    "Hodimlarning etika va korrupsiyaga qarshi kurashish sohasida uqitishni tashkil qilish boyicha Yoriqnoma",
+    "Jamiyatga isha qabul qilinayotgan nomzodlarni tekshirish boyicha Yoriqnoma",
+    "Korrupsiyaviy havo-hatalarni aniqlash va baholash Usuluiyoti",
   ],
 };
 
@@ -337,16 +369,16 @@ const corruptionLawDefinitions = {
   image: "/files/president_image.jpg",
   sections: [
     {
-      title: "Коррупция",
-      text: "шахснинг ўз мансаб ёки хизмат мавқеидан шахсий манфаатларини ёхуд ўзга шахсларнинг манфаатларини кўзлаб моддий ёки номоддий наф олиш мақсадида қонунга хилоф равишда фойдаланиши, худди шунингдек бундай нафни қонунга хилоф равишда тақдим этиш.",
+      title: "Korrupsiya",
+      text: "shaxsning oz mansab yoki xizmat mavqeidan shaxsiy manfaatlarini yohud ozga shaxslarning manfaatlarini kozlab moddiy yoki nomoddiy naf olish maqsadida qonunga khilof ravishda foydalanishi, khuddi shuningdek bunday nafni qonunga khilof ravishda taqdim etish.",
     },
     {
-      title: "Коррупцияга оид ҳуқуқбузарлик",
-      text: "коррупция аломатларига эга бўлган, содир этилганлиги учун қонунчиликда жавобгарлик назарда тутилган қилмиш.",
+      title: "Korrupsiyaga oid huquqbuzarlik",
+      text: "korrupsiya alomarlariga ega bolgan, sodir etilganligi uchun qonunchlikda javobgarlik nazarda tutilgan qilmish.",
     },
     {
-      title: "Манфаатлар тўқнашуви",
-      text: "шахсий (бевосита ёки билвосита) манфаатдорлик шахснинг мансаб ёки хизмат мажбуриятларини лозим даражада бажаришига таъсир кўрсатаётган ёхуд таъсир кўрсатиши мумкин бўлган ҳамда шахсий манфаатдорлик билан фуқароларнинг, ташкилотларнинг, жамиятнинг ёки давлатнинг ҳуқуқлари ва қонуний манфаатлари ўртасида қарама-қаршилик юзага келаётган ёки юзага келиши мумкин бўлган вазият.",
+      title: "Manfaatlar toqnashuvi",
+      text: "shaxsiy (bevosita yoki bilvosita) manfaatdorlik shaxsning mansab yoki xizmat majburiyatlarini lozim darajada bajarishing taosir korsataytgan yohud taosir korsatishi mumkin bolgan hamda shaxsiy manfaatdorlik bilan fuqaroaning, tashkilotlarning, jamiyatning yoki davlatning huquqlari va qonuniy manfaatlari ortasida qarama-qarshliq yuzaga kelaytgan yoki yuzaga kelishi mumkin bolgan vaziyat.",
     },
   ],
 };
@@ -362,10 +394,12 @@ export default function Home() {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const [isIntroClosing, setIsIntroClosing] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [currentDisplayMode, setCurrentDisplayMode] = useState(4); // 0=stats, 1=insights, 2=corruption, 3=president, 4=internal-docs, 5=law-definitions
+  const [currentDisplayMode, setCurrentDisplayMode] = useState(4); // 0=stats, 1=insights, 2=corruption, 3=president, 4=internal-docs, 5=law-definitions, 6=anti-corruption-day
   const [currentInsightIndex, setCurrentInsightIndex] = useState(0);
   const [currentCorruptionSlide, setCurrentCorruptionSlide] = useState(0);
   const [currentPresidentSlide, setCurrentPresidentSlide] = useState(0);
+  const [currentAntiCorruptionSlide, setCurrentAntiCorruptionSlide] =
+    useState(0);
   const [currentStatIndex, setCurrentStatIndex] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -541,7 +575,7 @@ export default function Home() {
   // Master auto-advance timer: cycle through display modes every 10 seconds
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentDisplayMode((prev) => (prev + 1) % 6);
+      setCurrentDisplayMode((prev) => (prev + 1) % 7);
       // Also rotate through sub-carousels
       setCurrentInsightIndex((prev) => (prev + 1) % presidentInsights.length);
       setCurrentStatIndex((prev) => (prev + 1) % corruptionStats.length);
@@ -583,80 +617,48 @@ export default function Home() {
       {/* Main content - Always fits in viewport */}
       <div className="flex-1 flex flex-col relative">
         {/* Header Section with IES Logo and Company Info */}
-        <div className="flex-none bg-linear-to-r from-blue-900/50 to-slate-900/50 backdrop-blur-md border-b border-cyan-400/20 px-6 py-6">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-8">
+        <div className="flex-none bg-linear-to-r from-blue-900/50 to-slate-900/50 backdrop-blur-md border-b border-cyan-400/20 px-4 py-3">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             {/* Logo and Company Info */}
-            <div className="flex items-center gap-4 flex-1">
+            <div className="flex items-center gap-2 flex-1">
               <div className="shrink-0">
                 <Image
                   src="/icons/ies_brand.svg"
                   alt="Issiqlik Elektr Stansiyalari AJ"
-                  width={80}
-                  height={80}
-                  className="h-16 w-auto"
+                  width={60}
+                  height={60}
+                  className="h-12 w-auto"
                   priority
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <h1 className="text-2xl md:text-3xl font-bold text-white">
+                <h1 className="text-lg md:text-xl font-bold text-white">
                   Issiqlik Elektr Stansiyalari AJ
                 </h1>
-                <p className="text-sm md:text-base text-cyan-200 mt-1">
-                  Shaffoflik, Halollik va Javobgarlikni Kuchaytirish Platformasi
+
+                <p className="text-sm text-white/80 truncate">
+                  Korrupsiyaga qarshi kurashish va komplaens boshqarmasi
                 </p>
               </div>
-            </div>
-
-            {/* Quick Action Buttons */}
-            <div className="hidden md:flex items-center gap-3 shrink-0">
-              <Button
-                onClick={() => setCurrentDisplayMode(4)}
-                className="bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20"
-              >
-                Ichki hujjatlar
-              </Button>
-              <Button
-                onClick={() => setCurrentDisplayMode(5)}
-                className="bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20"
-              >
-                Qonun tushunchalari
-              </Button>
-              <Button
-                onClick={() =>
-                  window.open(
-                    "https://docs.google.com/forms/d/e/1FAIpQLScG0ic3AVqEWmb1RyHKENR4_YuzlPcTcpjUmvf-Z46AmLNj7A/viewform",
-                    "_blank",
-                  )
-                }
-                className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-lg"
-              >
-                Murojaat qilish
-              </Button>
-              <Button
-                onClick={handleMenuToggle}
-                className="bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20"
-              >
-                Menyu
-              </Button>
             </div>
           </div>
         </div>
 
         {/* Top: Larger Hero Section */}
         <div
-          className={`flex-none relative flex items-center justify-center px-4 ${currentDisplayMode === 5 ? "h-22" : "h-48"}`}
+          className={`flex-none relative flex items-center justify-center px-4 ${currentDisplayMode === 5 ? "h-16" : "h-24"}`}
         >
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-4 right-8 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute top-2 right-4 w-40 h-40 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse"></div>
             <div
-              className="absolute -bottom-4 left-8 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
+              className="absolute -bottom-2 left-4 w-40 h-40 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse"
               style={{ animationDelay: "2s" }}
             ></div>
           </div>
 
           <div className="relative z-10 text-center">
             <h2
-              className={`font-black bg-linear-to-r from-blue-300 via-white to-blue-200 bg-clip-text text-transparent ${currentDisplayMode === 5 ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl"}`}
+              className={`font-black bg-linear-to-r from-blue-300 via-white to-blue-200 bg-clip-text text-transparent ${currentDisplayMode === 5 ? "text-lg md:text-xl" : "text-xl md:text-2xl"}`}
             >
               Korrupsiyaga qarshi kurashish
             </h2>
@@ -664,14 +666,14 @@ export default function Home() {
         </div>
 
         {/* Middle: Auto-rotating carousel section - 60% of remaining space */}
-        <div className="flex-1 flex items-center justify-center px-4 py-4 relative overflow-hidden">
+        <div className="flex-1 flex items-center justify-center px-3 py-2 relative overflow-hidden">
           {currentDisplayMode === 0 && (
-            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-3">
               <div className="w-full max-w-6xl">
-                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">
                   Korrupsiyaga qarshi kurashda asosiy raqamlar
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {corruptionStats.map((stat, index) => {
                     const IconComponent = stat.icon;
                     const gradients = [
@@ -683,21 +685,21 @@ export default function Home() {
                     return (
                       <div
                         key={index}
-                        className={`${gradients[index]} rounded-3xl p-8 text-center hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-white/20 backdrop-blur-sm`}
+                        className={`${gradients[index]} rounded-2xl p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-white/20 backdrop-blur-sm`}
                       >
-                        <div className="flex justify-center mb-6">
+                        <div className="flex justify-center mb-2">
                           <IconComponent
-                            className="w-20 h-20 text-white drop-shadow-lg"
+                            className="w-12 h-12 text-white drop-shadow-lg"
                             strokeWidth={1.5}
                           />
                         </div>
-                        <div className="text-5xl font-bold text-white mb-3 drop-shadow-md">
+                        <div className="text-3xl font-bold text-white mb-1 drop-shadow-md">
                           {stat.stat}
                         </div>
-                        <div className="text-xl font-bold text-white mb-3 drop-shadow-sm">
+                        <div className="text-sm font-bold text-white drop-shadow-sm">
                           {stat.label}
                         </div>
-                        <p className="text-sm text-white/90">
+                        <p className="text-xs text-white/90">
                           {stat.description}
                         </p>
                       </div>
@@ -709,10 +711,10 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 1 && (
-            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
-              <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-3">
+              <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
                 <div className="flex items-center justify-center">
-                  <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                  <div className="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
                     {presidentInsights[currentInsightIndex].image && (
                       <Image
                         src={presidentInsights[currentInsightIndex].image}
@@ -724,24 +726,24 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center">
-                  <div className="glass-effect-dark rounded-3xl p-8 backdrop-blur-xl">
+                  <div className="glass-effect-dark rounded-2xl p-4 backdrop-blur-xl">
                     <blockquote className="relative">
-                      <p className="text-xl md:text-2xl leading-relaxed mb-6 italic font-light text-blue-100">
+                      <p className="text-sm md:text-base leading-tight mb-3 italic font-light text-blue-100">
                         &quot;{presidentInsights[currentInsightIndex].quote}
                         &quot;
                       </p>
                       <div className="text-right">
-                        <div className="font-bold text-lg text-blue-300">
+                        <div className="font-bold text-sm text-blue-300">
                           {presidentInsights[currentInsightIndex].source}
                         </div>
                       </div>
                     </blockquote>
                   </div>
-                  <div className="flex justify-center gap-2 mt-6">
+                  <div className="flex justify-center gap-2 mt-3">
                     {presidentInsights.map((_, index) => (
                       <div
                         key={index}
-                        className={`rounded-full transition ${currentInsightIndex === index ? "bg-blue-400 w-8 h-4" : "bg-white/30 w-4 h-4"}`}
+                        className={`rounded-full transition ${currentInsightIndex === index ? "bg-blue-400 w-6 h-3" : "bg-white/30 w-3 h-3"}`}
                       />
                     ))}
                   </div>
@@ -751,10 +753,10 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 2 && (
-            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
-              <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-3">
+              <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
                 <div className="flex items-center justify-center">
-                  <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                  <div className="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
                     {corruptionPresentationSlides[currentCorruptionSlide]
                       .image && (
                       <Image
@@ -770,23 +772,23 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center">
-                  <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">
                     Korrupsiya Taqdimoti
                   </h2>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-blue-300">
+                  <h3 className="text-lg md:text-xl font-bold mb-3 text-blue-300">
                     {corruptionPresentationSlides[currentCorruptionSlide].title}
                   </h3>
-                  <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6">
+                  <p className="text-sm md:text-base text-white/80 leading-tight mb-3">
                     {
                       corruptionPresentationSlides[currentCorruptionSlide]
                         .description
                     }
                   </p>
-                  <div className="flex justify-start gap-2 mt-4">
+                  <div className="flex justify-start gap-2 mt-2">
                     {corruptionPresentationSlides.map((_, index) => (
                       <div
                         key={index}
-                        className={`rounded-full transition ${currentCorruptionSlide === index ? "bg-blue-400 w-6 h-4" : "bg-white/30 w-4 h-4"}`}
+                        className={`rounded-full transition ${currentCorruptionSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
                       />
                     ))}
                   </div>
@@ -796,10 +798,10 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 3 && (
-            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
-              <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-3">
+              <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
                 <div className="flex items-center justify-center">
-                  <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                  <div className="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
                     {presidentFeedbackSlides[currentPresidentSlide].image && (
                       <Image
                         src={
@@ -813,20 +815,20 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center">
-                  <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">
                     Prezidentning Qarorları
                   </h2>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-blue-300">
+                  <h3 className="text-lg md:text-xl font-bold mb-3 text-blue-300">
                     {presidentFeedbackSlides[currentPresidentSlide].title}
                   </h3>
-                  <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6">
+                  <p className="text-sm md:text-base text-white/80 leading-tight mb-3">
                     {presidentFeedbackSlides[currentPresidentSlide].description}
                   </p>
-                  <div className="flex justify-start gap-2 mt-4">
+                  <div className="flex justify-start gap-2 mt-2">
                     {presidentFeedbackSlides.map((_, index) => (
                       <div
                         key={index}
-                        className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-6 h-4" : "bg-white/30 w-4 h-4"}`}
+                        className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
                       />
                     ))}
                   </div>
@@ -836,20 +838,20 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 4 && (
-            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
-              <section className="w-full max-w-7xl overflow-hidden rounded-3xl border border-cyan-300/25 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 text-slate-100 shadow-2xl">
-                <div className="border-b border-cyan-300/20 bg-linear-to-r from-slate-950 via-slate-900 to-black px-6 py-4 md:px-8">
-                  <h2 className="text-balance text-2xl font-black leading-tight text-white md:text-4xl">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-3">
+              <section className="w-full max-w-7xl overflow-hidden rounded-2xl border border-cyan-300/25 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 text-slate-100 shadow-2xl">
+                <div className="border-b border-cyan-300/20 bg-linear-to-r from-slate-950 via-slate-900 to-black px-4 py-2 md:px-6">
+                  <h2 className="text-balance text-lg font-bold leading-tight text-white md:text-xl">
                     {internalDocuments.title}
                   </h2>
                 </div>
 
-                <div className="bg-[linear-gradient(130deg,rgba(2,8,23,0.6)_0%,rgba(15,23,42,0.55)_45%,rgba(30,64,175,0.25)_100%)] px-5 py-4 md:px-8 md:py-6">
-                  <p className="mb-4 rounded-lg border border-cyan-300/30 bg-white/8 px-3 py-2 text-base font-semibold leading-7 text-cyan-100 md:text-2xl md:leading-10">
+                <div className="bg-[linear-gradient(130deg,rgba(2,8,23,0.6)_0%,rgba(15,23,42,0.55)_45%,rgba(30,64,175,0.25)_100%)] px-4 py-3 md:px-6 md:py-4">
+                  <p className="mb-3 rounded-lg border border-cyan-300/30 bg-white/8 px-2 py-2 text-sm font-semibold leading-5 text-cyan-100 md:text-base md:leading-6">
                     {internalDocuments.subtitle}
                   </p>
 
-                  <div className="grid gap-4 md:grid-cols-2 md:gap-6">
+                  <div className="grid gap-2 md:grid-cols-2 md:gap-3">
                     {[
                       internalDocuments.items.slice(
                         0,
@@ -861,7 +863,7 @@ export default function Home() {
                     ].map((columnItems, columnIndex) => (
                       <ul
                         key={`docs-column-${columnIndex}`}
-                        className="space-y-3"
+                        className="space-y-2"
                       >
                         {columnItems.map((item, itemIndex) => {
                           const iconPool = [
@@ -878,12 +880,12 @@ export default function Home() {
                           return (
                             <li
                               key={`doc-item-${columnIndex}-${itemIndex}`}
-                              className="flex items-start gap-3"
+                              className="flex items-start gap-2"
                             >
-                              <span className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-blue-600/90 text-white md:h-14 md:w-14">
-                                <IconComponent className="h-5 w-5 md:h-7 md:w-7" />
+                              <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/25 bg-blue-600/90 text-white md:h-10 md:w-10">
+                                <IconComponent className="h-4 w-4 md:h-5 md:w-5" />
                               </span>
-                              <p className="text-base leading-7 text-slate-100 md:text-2xl md:leading-10">
+                              <p className="text-sm leading-5 text-slate-100 md:text-sm md:leading-6">
                                 {item}
                               </p>
                             </li>
@@ -898,10 +900,10 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 5 && (
-            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
-              <section className="w-full max-w-7xl overflow-hidden rounded-3xl border border-slate-200/20 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 shadow-2xl">
-                <div className="grid h-full gap-3 p-3 md:grid-cols-[26%_74%] md:p-4">
-                  <div className="relative min-h-64 overflow-hidden rounded-2xl border border-cyan-300/25 bg-slate-900/60">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-3">
+              <section className="w-full max-w-7xl overflow-hidden rounded-2xl border border-slate-200/20 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 shadow-2xl">
+                <div className="grid h-full gap-2 p-2 md:grid-cols-[26%_74%] md:p-3">
+                  <div className="relative min-h-48 overflow-hidden rounded-2xl border border-cyan-300/25 bg-slate-900/60">
                     <Image
                       src={corruptionLawDefinitions.image}
                       alt="Коррупцияга қарши курашиш тўғрисидаги қонун"
@@ -910,23 +912,23 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="relative rounded-2xl border-x-4 border-orange-500/90 px-3 py-2 md:px-4 md:py-3">
-                    <div className="space-y-2 md:space-y-3">
+                  <div className="relative rounded-2xl border-x-4 border-orange-500/90 px-2 py-2 md:px-3 md:py-2">
+                    <div className="space-y-1 md:space-y-2">
                       {corruptionLawDefinitions.sections.map((section, idx) => (
                         <article
                           key={`law-def-${idx}`}
-                          className="grid gap-2 md:grid-cols-[52px_1fr] md:gap-2"
+                          className="grid gap-1 md:grid-cols-[40px_1fr] md:gap-2"
                         >
                           <div className="hidden items-start justify-center md:flex">
-                            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-white/8 text-white md:h-11 md:w-11">
-                              <FileIcon className="h-5 w-5 md:h-6 md:w-6" />
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/70 bg-white/8 text-white md:h-9 md:w-9">
+                              <FileIcon className="h-4 w-4 md:h-5 md:w-5" />
                             </span>
                           </div>
                           <div>
-                            <h3 className="text-lg font-black leading-tight text-orange-500 md:text-2xl">
+                            <h3 className="text-sm font-bold leading-tight text-orange-500 md:text-base">
                               {section.title}
                             </h3>
-                            <p className="mt-1 text-sm leading-6 text-slate-100 md:text-lg md:leading-7">
+                            <p className="mt-0.5 text-xs leading-4 text-slate-100 md:text-sm md:leading-5">
                               {section.text}
                             </p>
                           </div>
@@ -938,14 +940,74 @@ export default function Home() {
               </section>
             </div>
           )}
+
+          {currentDisplayMode === 6 && (
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-3">
+              <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
+                <div className="flex items-center justify-center">
+                  <div className="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                    {antiCorruptionDaySlides[currentAntiCorruptionSlide]
+                      .image && (
+                      <Image
+                        src={
+                          antiCorruptionDaySlides[currentAntiCorruptionSlide]
+                            .image
+                        }
+                        alt="9-dekabr"
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                    {antiCorruptionDaySlides[currentAntiCorruptionSlide].title}
+                  </h2>
+                  <p className="text-sm md:text-base text-white/80 leading-tight mb-3">
+                    {
+                      antiCorruptionDaySlides[currentAntiCorruptionSlide]
+                        .description
+                    }
+                  </p>
+                  <div className="text-xs md:text-sm space-y-2 mb-3">
+                    <h3 className="text-green-400 font-bold">
+                      9-dekabrning tarixi va maqsadi
+                    </h3>
+                    {antiCorruptionDaySlides[
+                      currentAntiCorruptionSlide
+                    ].timeline.map((item, idx) => (
+                      <div
+                        key={`timeline-${idx}`}
+                        className="flex gap-2 text-xs md:text-sm"
+                      >
+                        <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white font-bold">
+                          {item.number}
+                        </span>
+                        <div>
+                          <p className="font-bold text-white">{item.title}</p>
+                          <p className="text-white/70 text-xs">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-white/60 italic">
+                    {antiCorruptionDaySlides[currentAntiCorruptionSlide].footer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Bottom: Info bar */}
         <div
-          className={`flex-none relative flex items-center justify-center px-4 border-t border-white/10 bg-linear-to-r from-blue-900/30 via-transparent to-blue-900/30 ${currentDisplayMode === 5 ? "h-14" : "h-20"}`}
+          className={`flex-none relative flex items-center justify-center px-4 border-t border-white/10 bg-linear-to-r from-blue-900/30 via-transparent to-blue-900/30 ${currentDisplayMode === 5 ? "h-10" : "h-12"}`}
         >
           <div
-            className={`text-center text-white/80 font-medium ${currentDisplayMode === 5 ? "text-xs md:text-sm" : "text-sm md:text-base"}`}
+            className={`text-center text-white/80 font-medium ${currentDisplayMode === 5 ? "text-xs" : "text-xs md:text-sm"}`}
           >
             <p>
               &quot;Issiqlik Elektr Stansiyalari AJ&quot; — Shaffoflik, Halollik
