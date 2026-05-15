@@ -334,7 +334,7 @@ const internalDocuments = {
 };
 
 const corruptionLawDefinitions = {
-  image: "/files/corruption_book.jpg",
+  image: "/files/president_image.jpg",
   sections: [
     {
       title: "Коррупция",
@@ -660,11 +660,6 @@ export default function Home() {
             >
               Korrupsiyaga qarshi kurashish
             </h2>
-            <p
-              className={`text-cyan-200 ${currentDisplayMode === 5 ? "mt-1 text-sm md:text-base" : "mt-2 text-lg"}`}
-            >
-              Halollik va Javobgarlikning Yo&apos;li
-            </p>
           </div>
         </div>
 
