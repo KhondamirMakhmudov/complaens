@@ -85,6 +85,35 @@ const animationStyles = `
     }
   }
 
+  @keyframes carouselIn {
+    0% {
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+      filter: blur(6px);
+    }
+    65% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes carouselContentIn {
+    0% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
   }
@@ -103,6 +132,15 @@ const animationStyles = `
 
   .animate-glow {
     animation: glow 3s ease-in-out infinite;
+  }
+
+  .animate-carousel-in {
+    animation: carouselIn 560ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .animate-carousel-in > * {
+    animation: carouselContentIn 620ms ease-out both;
+    animation-delay: 80ms;
   }
 
   .glass-effect {
@@ -633,7 +671,7 @@ export default function Home() {
         {/* Middle: Auto-rotating carousel section - 60% of remaining space */}
         <div className="flex-1 flex items-center justify-center px-4 py-4 relative overflow-hidden">
           {currentDisplayMode === 0 && (
-            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
               <div className="w-full max-w-6xl">
                 <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
                   Korrupsiyaga qarshi kurashda asosiy raqamlar
@@ -676,7 +714,7 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 1 && (
-            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
               <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
                 <div className="flex items-center justify-center">
                   <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
@@ -718,7 +756,7 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 2 && (
-            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
               <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
                 <div className="flex items-center justify-center">
                   <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
@@ -763,7 +801,7 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 3 && (
-            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
               <div className="w-full max-w-5xl grid grid-cols-2 gap-8">
                 <div className="flex items-center justify-center">
                   <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
@@ -803,7 +841,7 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 4 && (
-            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
               <section className="w-full max-w-7xl overflow-hidden rounded-3xl border border-cyan-300/25 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 text-slate-100 shadow-2xl">
                 <div className="border-b border-cyan-300/20 bg-linear-to-r from-slate-950 via-slate-900 to-black px-6 py-4 md:px-8">
                   <h2 className="text-balance text-2xl font-black leading-tight text-white md:text-4xl">
@@ -865,7 +903,7 @@ export default function Home() {
           )}
 
           {currentDisplayMode === 5 && (
-            <div className="w-full h-full flex items-center justify-center animate-fade-in px-4">
+            <div className="w-full h-full flex items-center justify-center animate-carousel-in px-4">
               <section className="w-full max-w-7xl overflow-hidden rounded-3xl border border-slate-200/20 bg-linear-to-r from-slate-950/95 via-blue-950/95 to-slate-900/95 shadow-2xl">
                 <div className="grid h-full gap-3 p-3 md:grid-cols-[26%_74%] md:p-4">
                   <div className="relative min-h-64 overflow-hidden rounded-2xl border border-cyan-300/25 bg-slate-900/60">
