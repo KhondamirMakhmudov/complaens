@@ -276,19 +276,6 @@ const presidentFeedbackSlides = [
       "O'zbekiston Respublikasi Prezidentining 26.12.2025 yildag 'Davlat xaridlari tizimida raqobat muhiti va shaffoflikni ta'minlash bo'yicha navbatdagi chora-tadbirlar to'g'risida' gi PF-259-son FARMONI, 2026 yil, Tashkent sh.",
     image: "/files/president_feedbacks-assets/slide-01-rId3.png",
   },
-  {
-    slide: 2,
-    title: "Davlat va jamiyatning shaffof ishlashi",
-    description:
-      "Davlat xaridlari tizimida raqobat muhiti va shaffoflikni ta'minlash",
-    image: "/files/president_feedbacks-assets/slide-02-rId3.png",
-  },
-  {
-    slide: 3,
-    title: "Elektron davlat xizmatlari",
-    description: "Qonunchilikni yanada takomillash va shaffoflikni oshirish",
-    image: "/files/president_feedbacks-assets/slide-03-rId2.png",
-  },
 ];
 
 const antiCorruptionDaySlides = [
@@ -723,16 +710,18 @@ export default function Home() {
               <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
                 <div className="flex items-center justify-center">
                   <div className="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
-                    {presidentFeedbackSlides[currentPresidentSlide].image && (
-                      <Image
-                        src={
-                          presidentFeedbackSlides[currentPresidentSlide].image
-                        }
-                        alt="Slide"
-                        fill
-                        className="object-cover"
-                      />
-                    )}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides[currentPresidentSlide] &&
+                      presidentFeedbackSlides[currentPresidentSlide].image && (
+                        <Image
+                          src={
+                            presidentFeedbackSlides[currentPresidentSlide].image
+                          }
+                          alt="Slide"
+                          fill
+                          className="object-cover"
+                        />
+                      )}
                   </div>
                 </div>
                 <div className="flex flex-col justify-center">
@@ -740,18 +729,22 @@ export default function Home() {
                     Prezidentning Qarorları
                   </h2>
                   <h3 className="text-lg md:text-xl font-bold mb-3 text-blue-300">
-                    {presidentFeedbackSlides[currentPresidentSlide].title}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides[currentPresidentSlide]?.title}
                   </h3>
                   <p className="text-sm md:text-base text-white/80 leading-tight mb-3">
-                    {presidentFeedbackSlides[currentPresidentSlide].description}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides[currentPresidentSlide]
+                        ?.description}
                   </p>
                   <div className="flex justify-start gap-2 mt-2">
-                    {presidentFeedbackSlides.map((_, index) => (
-                      <div
-                        key={index}
-                        className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
-                      />
-                    ))}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
+                        />
+                      ))}
                   </div>
                 </div>
               </div>
@@ -763,16 +756,18 @@ export default function Home() {
               <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
                 <div className="flex items-center justify-center">
                   <div className="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
-                    {presidentFeedbackSlides[currentPresidentSlide].image && (
-                      <Image
-                        src={
-                          presidentFeedbackSlides[currentPresidentSlide].image
-                        }
-                        alt="Slide"
-                        fill
-                        className="object-cover"
-                      />
-                    )}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides[currentPresidentSlide] &&
+                      presidentFeedbackSlides[currentPresidentSlide].image && (
+                        <Image
+                          src={
+                            presidentFeedbackSlides[currentPresidentSlide].image
+                          }
+                          alt="Slide"
+                          fill
+                          className="object-cover"
+                        />
+                      )}
                   </div>
                 </div>
                 <div className="flex flex-col justify-center">
@@ -780,18 +775,22 @@ export default function Home() {
                     Prezidentning Qarorları
                   </h2>
                   <h3 className="text-lg md:text-xl font-bold mb-3 text-blue-300">
-                    {presidentFeedbackSlides[currentPresidentSlide].title}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides[currentPresidentSlide]?.title}
                   </h3>
                   <p className="text-sm md:text-base text-white/80 leading-tight mb-3">
-                    {presidentFeedbackSlides[currentPresidentSlide].description}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides[currentPresidentSlide]
+                        ?.description}
                   </p>
                   <div className="flex justify-start gap-2 mt-2">
-                    {presidentFeedbackSlides.map((_, index) => (
-                      <div
-                        key={index}
-                        className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
-                      />
-                    ))}
+                    {presidentFeedbackSlides.length > 0 &&
+                      presidentFeedbackSlides.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`rounded-full transition ${currentPresidentSlide === index ? "bg-blue-400 w-5 h-3" : "bg-white/30 w-3 h-3"}`}
+                        />
+                      ))}
                   </div>
                 </div>
               </div>
